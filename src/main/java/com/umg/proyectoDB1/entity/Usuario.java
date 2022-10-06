@@ -6,16 +6,11 @@ import javax.persistence.*;
 @Table(name = "usuario")
 public class Usuario {
     @Id
+    @Column(name = "idUsuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
 
-    @Column(name = "idusuario")
     private Integer idusuario;
-
-    public Usuario(){}
-    public Usuario(Integer idusuario) {
-        this.idusuario = idusuario;
-    }
+    private String password;
 
     public Integer getIdusuario() {
         return idusuario;
@@ -23,5 +18,21 @@ public class Usuario {
 
     public void setIdusuario(Integer idusuario) {
         this.idusuario = idusuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idusuario=" + idusuario +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
