@@ -9,14 +9,14 @@ public class Usuario {
     @Column(name = "idUsuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Integer idusuario;
+    private String idusuario;
     private String password;
 
-    public Integer getIdusuario() {
+    public String getIdusuario() {
         return idusuario;
     }
 
-    public void setIdusuario(Integer idusuario) {
+    public void setIdusuario(String idusuario) {
         this.idusuario = idusuario;
     }
 
