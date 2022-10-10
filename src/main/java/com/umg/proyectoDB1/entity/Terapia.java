@@ -1,6 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "terapia")
@@ -9,8 +10,11 @@ public class Terapia {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idterapia", nullable = false)
-    private Integer idterapia;
+    @Column(name = "id_terapia", nullable = false)
+    private Integer idTerapia;
+
+    @Column(name = "precio")
+    private Double precio;
 
     @Column(name = "terapia")
     private String terapia;
@@ -18,23 +22,27 @@ public class Terapia {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "precio")
-    private Double precio;
+    @Column(name = "especialidad_id_especialidad")
+    private Integer especialidadIdEspecialidad;
 
-    public Terapia(){}
-    public Terapia(Integer idterapia, String terapia, String descripcion, Double precio) {
-        this.idterapia = idterapia;
-        this.terapia = terapia;
-        this.descripcion = descripcion;
+    @OneToMany(mappedBy = "reservacionIdReservacion")
+    private List<TerapiaReservacion> terapiaReservacionList;
+
+
+    public Integer getIdTerapia() {
+        return idTerapia;
+    }
+
+    public void setIdTerapia(Integer idTerapia) {
+        this.idTerapia = idTerapia;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
         this.precio = precio;
-    }
-
-    public Integer getIdterapia() {
-        return idterapia;
-    }
-
-    public void setIdterapia(Integer idterapia) {
-        this.idterapia = idterapia;
     }
 
     public String getTerapia() {
@@ -53,11 +61,19 @@ public class Terapia {
         this.descripcion = descripcion;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Integer getEspecialidadIdEspecialidad() {
+        return especialidadIdEspecialidad;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setEspecialidadIdEspecialidad(Integer especialidadIdEspecialidad) {
+        this.especialidadIdEspecialidad = especialidadIdEspecialidad;
+    }
+
+    public List<TerapiaReservacion> getTerapiaReservacionList() {
+        return terapiaReservacionList;
+    }
+
+    public void setTerapiaReservacionList(List<TerapiaReservacion> terapiaReservacionList) {
+        this.terapiaReservacionList = terapiaReservacionList;
     }
 }

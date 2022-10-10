@@ -1,6 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "municipio")
@@ -9,17 +10,19 @@ public class Municipio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idmunicipio", nullable = false)
+    @Column(name = "id_municipio", nullable = false)
     private Integer idmunicipio;
 
     @Column(name = "municipio")
     private String municipio;
 
-    public Municipio(){}
-    public Municipio(Integer idmunicipio, String municipio) {
-        this.idmunicipio = idmunicipio;
-        this.municipio = municipio;
-    }
+
+    @Column(name = "departamento_id_departamento")
+    private Integer departamentoIdDepartamento;
+
+    @OneToMany(mappedBy = "municipioIdMunicipio")
+    private List<Direccion> direccionList;
+
 
     public Integer getIdmunicipio() {
         return idmunicipio;
@@ -35,5 +38,21 @@ public class Municipio {
 
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
+    }
+
+    public Integer getDepartamentoIdDepartamento() {
+        return departamentoIdDepartamento;
+    }
+
+    public void setDepartamentoIdDepartamento(Integer departamentoIdDepartamento) {
+        this.departamentoIdDepartamento = departamentoIdDepartamento;
+    }
+
+    public List<Direccion> getDireccionList() {
+        return direccionList;
+    }
+
+    public void setDireccionList(List<Direccion> direccionList) {
+        this.direccionList = direccionList;
     }
 }

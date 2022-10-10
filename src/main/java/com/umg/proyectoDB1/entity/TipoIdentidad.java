@@ -1,29 +1,26 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "tipoIdentidad")
+@Table(name = "tipo_identidad")
 public class TipoIdentidad {
-
-    private static final long serialVersionUID = 3760988163877761705L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idtipoIdentidad")
+    @Column(name = "id_tipo_identidad")
     private Integer idTipoIdentidad;
 
-    @Column(name = "tipoIdentidad")
-    String tipoIdentidad;
+    @Column(name = "tipo_identidad")
+    private String tipoIdentidad;
 
-    public TipoIdentidad(){}
+    @OneToMany(mappedBy = "tipoIdentidadIdTipoIdentidad")
+    private List<Persona> personaList;
 
-    public TipoIdentidad(Integer idTipoIdentidad, String tipoIdentidad, Integer tipoIdentidadList) {
-        this.idTipoIdentidad = idTipoIdentidad;
-        this.tipoIdentidad = tipoIdentidad;
-    }
+
 
     public Integer getIdTipoIdentidad() {
         return idTipoIdentidad;
@@ -39,5 +36,13 @@ public class TipoIdentidad {
 
     public void setTipoIdentidad(String tipoIdentidad) {
         this.tipoIdentidad = tipoIdentidad;
+    }
+
+    public List<Persona> getPersonaList() {
+        return personaList;
+    }
+
+    public void setPersonaList(List<Persona> personaList) {
+        this.personaList = personaList;
     }
 }

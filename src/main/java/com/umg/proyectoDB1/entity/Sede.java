@@ -1,32 +1,30 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Sede")
+@Table(name = "sede")
 public class Sede {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idsede", nullable = false)
-    private Integer idsede;
+    @Column(name = "id_sede", nullable = false)
+    private Integer idSede;
 
     @Column(name = "sede")
     private String sede;
 
-    public Sede(){}
-    public Sede(Integer idsede, String sede) {
-        this.idsede = idsede;
-        this.sede = sede;
+    @Column(name = "direccion_id_direccion")
+    private Integer direccionIdDireccion;
+
+    public Integer getIdSede() {
+        return idSede;
     }
 
-    public Integer getIdsede() {
-        return idsede;
-    }
-
-    public void setIdsede(Integer idsede) {
-        this.idsede = idsede;
+    public void setIdSede(Integer idSede) {
+        this.idSede = idSede;
     }
 
     public String getSede() {
@@ -35,5 +33,13 @@ public class Sede {
 
     public void setSede(String sede) {
         this.sede = sede;
+    }
+
+    public Integer getDireccionIdDireccion() {
+        return direccionIdDireccion;
+    }
+
+    public void setDireccionIdDireccion(Integer direccionIdDireccion) {
+        this.direccionIdDireccion = direccionIdDireccion;
     }
 }

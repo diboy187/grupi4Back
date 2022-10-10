@@ -10,43 +10,91 @@ public class Reservacion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idreservacion", nullable = false)
-    private Integer idreservacion;
+    @Column(name = "id_reservacion", nullable = false)
+    private Integer idReservacion;
 
-    @Column(name = "datosCita")
-    private String datosCita;
+    @Column(name = "datos_reservacion")
+    private String datosReservacion;
 
-    @Column(name = "fechaCita")
-    private Date fechaCita;
+    @Column(name = "fecha_Rerservacion")
+    private Date fechaRerservacion;
 
-    public Reservacion(){}
-    public Reservacion(Integer idreservacion, String datosCita, Date fechaCita) {
-        this.idreservacion = idreservacion;
-        this.datosCita = datosCita;
-        this.fechaCita = fechaCita;
+    @Column(name = "horario_id_horario")
+    private Integer hoarioIdHorario;
+
+    @Column(name = "cliente_id_cliente")
+    private Integer clienteIdCliente;
+
+    @Column(name = "estado_id_estado")
+    private Integer estadoIdEstado;
+
+    @Column(name = "especialidad_especialista_id_especialidad_especialista")
+    private Integer especialidadEspecialistaIdEspecialidadEspecialista;
+
+    @Column(name = "clinica_especialidad_id_clinica_especialidad")
+    private Integer clinicaEspecialidadIdClinicaEspecialidad;
+
+    public Integer getIdReservacion() {
+        return idReservacion;
     }
 
-    public Integer getIdreservacion() {
-        return idreservacion;
+    public void setIdReservacion(Integer idReservacion) {
+        this.idReservacion = idReservacion;
     }
 
-    public void setIdreservacion(Integer idreservacion) {
-        this.idreservacion = idreservacion;
+    public String getDatosReservacion() {
+        return datosReservacion;
     }
 
-    public String getDatosCita() {
-        return datosCita;
+    public void setDatosReservacion(String datosReservacion) {
+        this.datosReservacion = datosReservacion;
     }
 
-    public void setDatosCita(String datosCita) {
-        this.datosCita = datosCita;
+    public Date getFechaRerservacion() {
+        return fechaRerservacion;
     }
 
-    public Date getFechaCita() {
-        return fechaCita;
+    public void setFechaRerservacion(Date fechaRerservacion) {
+        this.fechaRerservacion = fechaRerservacion;
     }
 
-    public void setFechaCita(Date fechaCita) {
-        this.fechaCita = fechaCita;
+    public Integer getHoarioIdHorario() {
+        return hoarioIdHorario;
+    }
+
+    public void setHoarioIdHorario(Integer hoarioIdHorario) {
+        this.hoarioIdHorario = hoarioIdHorario;
+    }
+
+    public Integer getClienteIdCliente() {
+        return clienteIdCliente;
+    }
+
+    public void setClienteIdCliente(Integer clienteIdCliente) {
+        this.clienteIdCliente = clienteIdCliente;
+    }
+
+    public Integer getEstadoIdEstado() {
+        return estadoIdEstado;
+    }
+
+    public void setEstadoIdEstado(Integer estadoIdEstado) {
+        this.estadoIdEstado = estadoIdEstado;
+    }
+
+    public Integer getEspecialidadEspecialistaIdEspecialidadEspecialista() {
+        return especialidadEspecialistaIdEspecialidadEspecialista;
+    }
+
+    public void setEspecialidadEspecialistaIdEspecialidadEspecialista(Integer especialidadEspecialistaIdEspecialidadEspecialista) {
+        this.especialidadEspecialistaIdEspecialidadEspecialista = especialidadEspecialistaIdEspecialidadEspecialista;
+    }
+
+    public Integer getClinicaEspecialidadIdClinicaEspecialidad() {
+        return clinicaEspecialidadIdClinicaEspecialidad;
+    }
+
+    public void setClinicaEspecialidadIdClinicaEspecialidad(Integer clinicaEspecialidadIdClinicaEspecialidad) {
+        this.clinicaEspecialidadIdClinicaEspecialidad = clinicaEspecialidadIdClinicaEspecialidad;
     }
 }

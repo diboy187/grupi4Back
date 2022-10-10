@@ -9,24 +9,18 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idrol", nullable = false)
-    private Integer idrol;
+    @Column(name = "id_rol", nullable = false)
+    private Integer idRol;
 
-    @Column(name = "nombreRol")
+    @Column(name = "nombre_rol")
     private String nombreRol;
 
-    public Rol(){}
-    public Rol(Integer idrol, String nombreRol) {
-        this.idrol = idrol;
-        this.nombreRol = nombreRol;
+    public Integer getIdRol() {
+        return idRol;
     }
 
-    public Integer getIdrol() {
-        return idrol;
-    }
-
-    public void setIdrol(Integer idrol) {
-        this.idrol = idrol;
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
     }
 
     public String getNombreRol() {

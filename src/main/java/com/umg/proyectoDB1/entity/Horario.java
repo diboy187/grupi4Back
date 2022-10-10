@@ -1,7 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
-import java.lang.annotation.Native;
+import java.util.Date;
 
 @Entity
 @Table(name = "horario")
@@ -10,31 +10,25 @@ public class Horario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idhorario", nullable = false)
-    private Integer idhorario;
+    @Column(name = "id_horario", nullable = false)
+    private Integer idHorario;
 
     @Column(name = "horario")
-    private String horario;
+    private Date horario;
 
-    public Horario(){}
-    public Horario(Integer idhorario, String horario) {
-        this.idhorario = idhorario;
-        this.horario = horario;
+    public Integer getIdHorario() {
+        return idHorario;
     }
 
-    public Integer getIdhorario() {
-        return idhorario;
+    public void setIdHorario(Integer idHorario) {
+        this.idHorario = idHorario;
     }
 
-    public void setIdhorario(Integer idhorario) {
-        this.idhorario = idhorario;
-    }
-
-    public String getHorario() {
+    public Date getHorario() {
         return horario;
     }
 
-    public void setHorario(String horario) {
+    public void setHorario(Date horario) {
         this.horario = horario;
     }
 }

@@ -1,32 +1,28 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "tipoPago")
+@Table(name = "tipo_pago")
 public class TipoPago {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idtipo_pago", nullable = false)
-    private Integer idtipoPago;
+    @Column(name = "id_tipo_pago", nullable = false)
+    private Integer idTipoPago;
 
-    @Column(name = "tipoPago")
+    @Column(name = "tipo_pago")
     private String tipoPago;
 
-    public TipoPago(){}
-    public TipoPago(Integer idtipoPago, String tipoPago) {
-        this.idtipoPago = idtipoPago;
-        this.tipoPago = tipoPago;
+
+    public Integer getIdTipoPago() {
+        return idTipoPago;
     }
 
-    public Integer getIdtipoPago() {
-        return idtipoPago;
-    }
-
-    public void setIdtipoPago(Integer idtipoPago) {
-        this.idtipoPago = idtipoPago;
+    public void setIdTipoPago(Integer idTipoPago) {
+        this.idTipoPago = idTipoPago;
     }
 
     public String getTipoPago() {

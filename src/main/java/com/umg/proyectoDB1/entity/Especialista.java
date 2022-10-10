@@ -3,37 +3,42 @@ package com.umg.proyectoDB1.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "estilo")
+@Table(name = "especialista")
 public class Especialista {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idespecialista", nullable = false)
-    private Integer idespecialista;
+    @Column(name = "id_especialista", nullable = false)
+    private Integer idEspecialista;
 
-    @Column(name = "estadoEspecialista")
-    private Character estadoEspecialista;
+    @Column(name = "estado_especialista")
+    private Integer estadoEspecialista;
 
-    public Especialista(){}
-    public Especialista(Integer idespecialista, Character estadoEspecialista) {
-        this.idespecialista = idespecialista;
-        this.estadoEspecialista = estadoEspecialista;
+    @Column(name = "persona_id_persona")
+    private Integer personaIdPersona;
+
+    public Integer getIdEspecialista() {
+        return idEspecialista;
     }
 
-    public Integer getIdespecialista() {
-        return idespecialista;
+    public void setIdEspecialista(Integer idEspecialista) {
+        this.idEspecialista = idEspecialista;
     }
 
-    public void setIdespecialista(Integer idespecialista) {
-        this.idespecialista = idespecialista;
-    }
-
-    public Character getEstadoEspecialista() {
+    public Integer getEstadoEspecialista() {
         return estadoEspecialista;
     }
 
-    public void setEstadoEspecialista(Character estadoEspecialista) {
+    public void setEstadoEspecialista(Integer estadoEspecialista) {
         this.estadoEspecialista = estadoEspecialista;
+    }
+
+    public Integer getPersonaIdPersona() {
+        return personaIdPersona;
+    }
+
+    public void setPersonaIdPersona(Integer personaIdPersona) {
+        this.personaIdPersona = personaIdPersona;
     }
 }

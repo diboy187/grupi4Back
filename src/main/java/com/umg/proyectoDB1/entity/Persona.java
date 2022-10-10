@@ -1,6 +1,10 @@
 package com.umg.proyectoDB1.entity;
 
+import oracle.ons.Cli;
+
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 @Entity
 @Table(name = "persona")
@@ -11,42 +15,43 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idPersona")
-        private Integer idPersona;
+    @Column(name = "id_persona")
+    private Integer idPersona;
 
     @Column(name = "nombre")
-            private String nombre;
+    private String nombre;
 
     @Column(name = "apellido")
-            private String apellido;
+    private String apellido;
 
     @Column(name = "edad")
-            private Integer edad;
+    private Integer edad;
 
     @Column(name = "telefono")
-            private Integer telefono;
+    private Integer telefono;
 
     @Column(name = "email")
-            private String email;
+    private String email;
 
     @Column(name = "identidad")
-            private String identidad;
+    private String identidad;
 
-    @Column(name = "tipoIdentidadIdTipoIdentidad")
+    @Column(name = "tipo_Identidad_id_tipo_identidad")
     private Integer tipoIdentidadIdTipoIdentidad;
 
-    public Persona() {}
-    public Persona(Integer idPersona, String nombre, String apellido, Integer edad, Integer telefono, String email, String identidad) {
-        this.idPersona = idPersona;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.telefono = telefono;
-        this.email = email;
-        this.identidad = identidad;
+    @Column(name = "direccion_id_direccion")
+    private Integer direccionIdDireccion;
+
+    @OneToMany(mappedBy = "personaIdPersona")
+    private List<Cliente> clienteList;
+
+    public List<Cliente> getClienteList() {
+        return clienteList;
     }
 
-
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
+    }
 
     public Integer getIdPersona() {
         return idPersona;
@@ -102,5 +107,21 @@ public class Persona {
 
     public void setIdentidad(String identidad) {
         this.identidad = identidad;
+    }
+
+    public Integer getTipoIdentidadIdTipoIdentidad() {
+        return tipoIdentidadIdTipoIdentidad;
+    }
+
+    public void setTipoIdentidadIdTipoIdentidad(Integer tipoIdentidadIdTipoIdentidad) {
+        this.tipoIdentidadIdTipoIdentidad = tipoIdentidadIdTipoIdentidad;
+    }
+
+    public Integer getDireccionIdDireccion() {
+        return direccionIdDireccion;
+    }
+
+    public void setDireccionIdDireccion(Integer direccionIdDireccion) {
+        this.direccionIdDireccion = direccionIdDireccion;
     }
 }

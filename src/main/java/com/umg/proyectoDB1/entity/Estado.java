@@ -9,24 +9,18 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idestado", nullable = false)
-    private Integer idestado;
+    @Column(name = "id_estado", nullable = false)
+    private Integer idEstado;
 
     @Column(name = "estado")
     private String estado;
 
-    public Estado(){}
-    public Estado(Integer idestado, String estado) {
-        this.idestado = idestado;
-        this.estado = estado;
+    public Integer getIdEstado() {
+        return idEstado;
     }
 
-    public Integer getIdestado() {
-        return idestado;
-    }
-
-    public void setIdestado(Integer idestado) {
-        this.idestado = idestado;
+    public void setIdEstado(Integer idEstado) {
+        this.idEstado = idEstado;
     }
 
     public String getEstado() {

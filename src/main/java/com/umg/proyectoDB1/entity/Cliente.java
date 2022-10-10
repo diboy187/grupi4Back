@@ -9,24 +9,21 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
 
-    @Column(name = "idcliente", nullable = false)
-    private Integer idcliente;
+    @Column(name = "id_cliente", nullable = false)
+    private Integer idCliente;
 
     @Column(name = "antiguedad")
     private String antiguedad;
 
-    public Cliente(){}
-    public Cliente(Integer idcliente, String antiguedad) {
-        this.idcliente = idcliente;
-        this.antiguedad = antiguedad;
+    @Column(name = "persona_id_persona")
+    private Integer personaIdPersona;
+
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public Integer getIdcliente() {
-        return idcliente;
-    }
-
-    public void setIdcliente(Integer idcliente) {
-        this.idcliente = idcliente;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getAntiguedad() {
@@ -35,5 +32,13 @@ public class Cliente {
 
     public void setAntiguedad(String antiguedad) {
         this.antiguedad = antiguedad;
+    }
+
+    public Integer getPersonaIdPersona() {
+        return personaIdPersona;
+    }
+
+    public void setPersonaIdPersona(Integer personaIdPersona) {
+        this.personaIdPersona = personaIdPersona;
     }
 }
