@@ -13,22 +13,14 @@ public class DetalleFactura {
     @Column(name = "id_detalle_factura", nullable = false)
     private Integer idDetalleFactura;
 
+
+    //fk de factura_id_factura
     @Column(name = "factura_id_factura")
     private Integer facturaIdFactura;
-
+    //fk de terapia_reservacion_id_terapia_reservacion
     @Column(name = "terapia_reservacion_id_terapia_reservacion")
     private Integer terpaiaReservacionIdTerapiaReservacion;
 
-    @OneToMany(mappedBy = "reservacionIdReservacion")
-    private List<TerapiaReservacion> terapiaReservacionList;
-
-    public List<TerapiaReservacion> getTerapiaReservacionList() {
-        return terapiaReservacionList;
-    }
-
-    public void setTerapiaReservacionList(List<TerapiaReservacion> terapiaReservacionList) {
-        this.terapiaReservacionList = terapiaReservacionList;
-    }
 
     public Integer getIdDetalleFactura() {
         return idDetalleFactura;

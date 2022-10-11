@@ -1,6 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "especialidad_especialista")
@@ -17,6 +18,18 @@ public class EspecialidadEspecialista {
 
     @Column(name = "especialista_id_especialista")
     private Integer especialistaIdEspecialista;
+
+
+    @OneToMany (mappedBy = "especialidadEspecialistaIdEspecialidadEspecialista")
+    private List<Reservacion> reservacionList;
+
+    public List<Reservacion> getReservacionList() {
+        return reservacionList;
+    }
+
+    public void setReservacionList(List<Reservacion> reservacionList) {
+        this.reservacionList = reservacionList;
+    }
 
     public Integer getIdespecialidadEspecialista() {
         return idespecialidadEspecialista;

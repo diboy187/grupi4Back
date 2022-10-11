@@ -1,6 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "factura")
@@ -23,6 +24,18 @@ public class Factura {
 
     @Column(name = "estado_id_estado")
     private Integer estadoIdEstado;
+
+    @OneToMany(mappedBy = "facturaIdFactura")
+    private List<DetalleFactura> detalleFacturaList;
+
+
+    public List<DetalleFactura> getDetalleFacturaList() {
+        return detalleFacturaList;
+    }
+
+    public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
+        this.detalleFacturaList = detalleFacturaList;
+    }
 
     public Integer getIdFactura() {
         return idFactura;

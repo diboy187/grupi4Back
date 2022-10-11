@@ -29,6 +29,8 @@ public class Terapia {
     private List<TerapiaReservacion> terapiaReservacionList;
 
 
+
+
     public Integer getIdTerapia() {
         return idTerapia;
     }

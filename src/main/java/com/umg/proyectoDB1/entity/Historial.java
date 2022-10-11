@@ -25,6 +25,8 @@ public class Historial {
     @Column(name = "rol_id_rol")
     private Integer rolIdRol;
 
+
+
     public Integer getIdHistorial() {
         return idHistorial;
     }

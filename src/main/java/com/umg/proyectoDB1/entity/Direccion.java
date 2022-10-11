@@ -22,7 +22,7 @@ public class Direccion {
 
     @Column(name = "otros")
     private String otros;
-
+    //fk municipio
     @Column(name = "municipio_id_municipio")
     private int municipioIdMunicipio;
 

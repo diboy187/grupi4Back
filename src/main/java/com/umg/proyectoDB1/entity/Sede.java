@@ -19,6 +19,17 @@ public class Sede {
     @Column(name = "direccion_id_direccion")
     private Integer direccionIdDireccion;
 
+    @OneToMany(mappedBy = "sedeIdSede")
+    private List<Clinica> clinicaList;
+
+    public List<Clinica> getClinicaList() {
+        return clinicaList;
+    }
+
+    public void setClinicaList(List<Clinica> clinicaList) {
+        this.clinicaList = clinicaList;
+    }
+
     public Integer getIdSede() {
         return idSede;
     }

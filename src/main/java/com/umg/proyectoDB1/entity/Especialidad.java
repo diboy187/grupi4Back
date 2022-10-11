@@ -16,9 +16,34 @@ public class Especialidad {
     @Column(name = "especialidad")
     private String especialidad;
 
+
+
     @OneToMany(mappedBy = "especialidadIdEspecialidad")
     private List<ClinicaEspecialidad> especialidadList;
 
+    @OneToMany(mappedBy = "especialidadIdEspecialidad")
+    private List<EspecialidadEspecialista> especialidadEspecialistaList;
+
+    @OneToMany(mappedBy = "especialidadIdEspecialidad")
+    private List<Terapia> terapiaList;
+
+
+
+    public List<Terapia> getTerapiaList() {
+        return terapiaList;
+    }
+
+    public void setTerapiaList(List<Terapia> terapiaList) {
+        this.terapiaList = terapiaList;
+    }
+
+    public List<EspecialidadEspecialista> getEspecialidadEspecialistaList() {
+        return especialidadEspecialistaList;
+    }
+
+    public void setEspecialidadEspecialistaList(List<EspecialidadEspecialista> especialidadEspecialistaList) {
+        this.especialidadEspecialistaList = especialidadEspecialistaList;
+    }
 
     public Integer getIdEspecialidad() {
         return idEspecialidad;

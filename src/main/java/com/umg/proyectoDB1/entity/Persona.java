@@ -36,14 +36,37 @@ public class Persona {
     @Column(name = "identidad")
     private String identidad;
 
+    // llaves foraneas
     @Column(name = "tipo_Identidad_id_tipo_identidad")
     private Integer tipoIdentidadIdTipoIdentidad;
-
     @Column(name = "direccion_id_direccion")
     private Integer direccionIdDireccion;
 
+    //relacion a otras tablas
     @OneToMany(mappedBy = "personaIdPersona")
     private List<Cliente> clienteList;
+
+    @OneToMany(mappedBy = "personaIdPersona")
+    private List<Usuario> usuarioList;
+
+    @OneToMany(mappedBy = "especialidad")
+    private List<Especialidad> especialidadList;
+
+    public List<Especialidad> getEspecialidadList() {
+        return especialidadList;
+    }
+
+    public void setEspecialidadList(List<Especialidad> especialidadList) {
+        this.especialidadList = especialidadList;
+    }
+
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
+    }
 
     public List<Cliente> getClienteList() {
         return clienteList;

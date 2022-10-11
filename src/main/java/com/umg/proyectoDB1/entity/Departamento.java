@@ -16,6 +16,7 @@ public class Departamento {
     @Column(name = "departamento")
     private String departamento;
 
+    //fk hacia municipio
     @OneToMany(mappedBy = "departamentoIdDepartamento")
     private List<Municipio> municipioList;
 

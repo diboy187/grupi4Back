@@ -16,11 +16,16 @@ public class Clinica {
     @Column(name = "clinica")
     private String clinica;
 
+
+    //fk para sede
     @Column(name = "sede_id_sede")
     private Integer sedeIdSede;
 
+    //fk hacia clinica_especialidad
     @OneToMany(mappedBy = "clinicaIdClinica")
     private List<ClinicaEspecialidad> clinicaEspecialidadList;
+
+
 
     public Integer getIdclinica() {
         return idclinica;

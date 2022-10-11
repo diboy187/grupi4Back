@@ -1,6 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -12,11 +13,24 @@ public class Cliente {
     @Column(name = "id_cliente", nullable = false)
     private Integer idCliente;
 
-    @Column(name = "antiguedad")
-    private String antiguedad;
+    @Column(name = "antiguedad_meses")
+    private String antiguedadMeses;
 
+    //fk para persona
     @Column(name = "persona_id_persona")
     private Integer personaIdPersona;
+
+    //fk hacia reservacion
+    @OneToMany(mappedBy = "clienteIdCliente")
+    private List<Reservacion> reservacionList;
+
+    public List<Reservacion> getReservacionList() {
+        return reservacionList;
+    }
+
+    public void setReservacionList(List<Reservacion> reservacionList) {
+        this.reservacionList = reservacionList;
+    }
 
     public Integer getIdCliente() {
         return idCliente;
@@ -26,12 +40,12 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public String getAntiguedad() {
-        return antiguedad;
+    public String getAntiguedadMeses() {
+        return antiguedadMeses;
     }
 
-    public void setAntiguedad(String antiguedad) {
-        this.antiguedad = antiguedad;
+    public void setAntiguedadMeses(String antiguedadMeses) {
+        this.antiguedadMeses = antiguedadMeses;
     }
 
     public Integer getPersonaIdPersona() {

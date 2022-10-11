@@ -21,6 +21,8 @@ public class TerapiaReservacion {
     @OneToMany(mappedBy = "terpaiaReservacionIdTerapiaReservacion")
     private List<DetalleFactura> detalleFacturaList;
 
+
+
     public Integer getIdTerapiaReservacion() {
         return idTerapiaReservacion;
     }

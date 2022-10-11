@@ -24,6 +24,9 @@ public class Municipio {
     private List<Direccion> direccionList;
 
 
+
+
+
     public Integer getIdmunicipio() {
         return idmunicipio;
     }

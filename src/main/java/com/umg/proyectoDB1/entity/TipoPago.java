@@ -17,6 +17,17 @@ public class TipoPago {
     private String tipoPago;
 
 
+    @OneToMany(mappedBy = "tipoPagoIdtipoPago")
+    private List<FacturaTipoPago> facturaTipoPagoList;
+
+    public List<FacturaTipoPago> getFacturaTipoPagoList() {
+        return facturaTipoPagoList;
+    }
+
+    public void setFacturaTipoPagoList(List<FacturaTipoPago> facturaTipoPagoList) {
+        this.facturaTipoPagoList = facturaTipoPagoList;
+    }
+
     public Integer getIdTipoPago() {
         return idTipoPago;
     }

@@ -2,6 +2,7 @@ package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "reservacion")
@@ -16,7 +17,7 @@ public class Reservacion {
     @Column(name = "datos_reservacion")
     private String datosReservacion;
 
-    @Column(name = "fecha_Rerservacion")
+    @Column(name = "fecha_reservacion")
     private Date fechaRerservacion;
 
     @Column(name = "horario_id_horario")
@@ -33,6 +34,17 @@ public class Reservacion {
 
     @Column(name = "clinica_especialidad_id_clinica_especialidad")
     private Integer clinicaEspecialidadIdClinicaEspecialidad;
+
+    @OneToMany(mappedBy = "reservacionIdReservacion")
+    private List<TerapiaReservacion> terapiaReservacionList;
+
+    public List<TerapiaReservacion> getTerapiaReservacionList() {
+        return terapiaReservacionList;
+    }
+
+    public void setTerapiaReservacionList(List<TerapiaReservacion> terapiaReservacionList) {
+        this.terapiaReservacionList = terapiaReservacionList;
+    }
 
     public Integer getIdReservacion() {
         return idReservacion;

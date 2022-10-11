@@ -1,6 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -20,6 +21,17 @@ public class Usuario {
 
     @Column(name = "persona_id_persona")
     private Integer personaIdPersona;
+
+    @OneToMany(mappedBy = "usuarioIdUsuario")
+    private List<Historial> historialList;
+
+    public List<Historial> getHistorialList() {
+        return historialList;
+    }
+
+    public void setHistorialList(List<Historial> historialList) {
+        this.historialList = historialList;
+    }
 
     public Integer getIdUsuario() {
         return idUsuario;
