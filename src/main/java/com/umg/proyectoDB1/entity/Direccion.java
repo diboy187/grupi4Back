@@ -8,9 +8,6 @@ import java.util.Optional;
 @Table(name = "direccion")
 public class Direccion {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_direccion", nullable = false)
     private Integer idDireccion;
 

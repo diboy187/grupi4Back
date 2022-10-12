@@ -12,9 +12,6 @@ public class Persona {
 
     private static final long serialVersionUID = 3760988163877761705L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_persona")
     private Integer idPersona;
 

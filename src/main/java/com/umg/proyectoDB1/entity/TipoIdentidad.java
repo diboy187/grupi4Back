@@ -8,9 +8,6 @@ import java.util.List;
 public class TipoIdentidad {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_tipo_identidad")
     private Integer idTipoIdentidad;
 

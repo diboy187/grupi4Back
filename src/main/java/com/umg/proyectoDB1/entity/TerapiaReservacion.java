@@ -8,9 +8,6 @@ import java.util.List;
 @Table(name = "terapai_reservacion")
 public class TerapiaReservacion {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_terapia_reservacion" )
     private Integer idTerapiaReservacion;
 

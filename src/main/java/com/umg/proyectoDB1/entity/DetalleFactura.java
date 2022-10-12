@@ -7,12 +7,8 @@ import java.util.List;
 @Table(name = "detalle_factura")
 public class DetalleFactura {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_detalle_factura", nullable = false)
     private Integer idDetalleFactura;
-
 
     //fk de factura_id_factura
     @Column(name = "factura_id_factura")

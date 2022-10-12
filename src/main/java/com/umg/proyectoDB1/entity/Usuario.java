@@ -7,9 +7,6 @@ import java.util.List;
 @Table(name = "usuario")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_usuario", nullable = false)
     private Integer idUsuario;
 
@@ -24,6 +21,8 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuarioIdUsuario")
     private List<Historial> historialList;
+
+
 
     public List<Historial> getHistorialList() {
         return historialList;

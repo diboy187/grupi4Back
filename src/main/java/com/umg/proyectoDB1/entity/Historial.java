@@ -7,9 +7,6 @@ import java.util.Date;
 @Table(name = "historial")
 public class Historial {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_historial", nullable = false)
     private Integer idHistorial;
 

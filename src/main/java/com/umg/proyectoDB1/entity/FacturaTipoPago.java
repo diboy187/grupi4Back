@@ -8,9 +8,6 @@ import java.util.List;
 @Table(name = "factura_tipo_pago")
 public class FacturaTipoPago {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-
     @Column(name = "id_factura_tipo_pago", nullable = false)
     private Integer idFacturaTipoPago;
 
