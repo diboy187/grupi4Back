@@ -3,11 +3,7 @@ package com.umg.proyectoDB1.service;
 import com.umg.proyectoDB1.entity.Municipio;
 import com.umg.proyectoDB1.repository.MunicipioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -19,5 +15,11 @@ public class MunicipioService {
     MunicipioRepository municipioRepository;
 
     @GetMapping (path = "/consulta")
-    private List<Municipio> find(){ return municipioRepository.findAll();}
+    private List<Municipio> consulta(){ return municipioRepository.findAll();}
+
+    @PostMapping(path = "/crea")
+    private Municipio crea(@RequestBody Municipio municipio){
+        return municipioRepository.save(municipio);
+
+    }
 }

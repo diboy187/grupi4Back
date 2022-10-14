@@ -1,16 +1,13 @@
 package com.umg.proyectoDB1.service;
 
-
 import com.umg.proyectoDB1.entity.Cliente;
 import com.umg.proyectoDB1.entity.Persona;
 import com.umg.proyectoDB1.entity.Usuario;
 import com.umg.proyectoDB1.repository.ClienteRepository;
 import com.umg.proyectoDB1.repository.PersonaRepository;
 import com.umg.proyectoDB1.repository.UsuarioRepository;
-import org.apache.catalina.valves.rewrite.InternalRewriteMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
@@ -32,37 +29,52 @@ public class PersonaService {
 
 
     @GetMapping(path = "/consulta")
-    private List<Persona> find(){ return personaRepository.findAll();
+    private List<Persona> consulta(){ return personaRepository.findAll();
     }
+
+    @GetMapping(path = "/consulta/{ID}")
+    private Optional<Persona> busqueda(@PathVariable ("ID") int Id){
+        return personaRepository.findById(Id);
+    }
+
+
 
     @PostMapping(path = "/crea")
     private String  crea(@RequestBody Persona persona){
-        List<Persona> personaList = personaRepository.findAll();
-        int contador = personaList.size() + 1;
-        persona.setIdPersona(contador);
-        personaRepository.save(persona);
+        if (persona.getIdPersona() == null){
+            List<Persona> personaList = personaRepository.findAll();
+            int contador = personaList.size() + 1;
+            persona.setIdPersona(contador);
+            creaPersonaCliente(persona);
+        }else{
+            creaPersonaCliente(persona);
+        }
         //creacion cliente
         CreaCliente(persona);
         //creacion de usuario
-        String usuario = CreaUsuario(persona);
+        String usuario = "";
+        usuario = CreaUsuario(persona);
 
         //return persona;
-        return "Usuario creado exitosamente  --->  " + usuario;
+        return usuario;
     }
 
+
+
+
+    public void creaPersonaCliente(Persona persona){
+        personaRepository.save(persona);
+    }
 
     public void CreaCliente(Persona persona){
-        System.out.println("persona " + persona.getNombre());
-        List<Cliente> clienteList = clienteRepository.findAll();
-        int contador =  clienteList.size() + 1;
-        Cliente cliente = new Cliente();
-        cliente.setIdCliente(contador);
-        cliente.setPersonaIdPersona(persona.getIdPersona());
-        cliente.setAntiguedadMeses(String.valueOf(LocalDateTime.now()));
-        clienteRepository.save(cliente);
+            List<Cliente> clienteList = clienteRepository.findAll();
+            int contador =  clienteList.size() + 1;
+            Cliente cliente = new Cliente();
+            cliente.setIdCliente(contador);
+            cliente.setPersonaIdPersona(persona.getIdPersona());
+            cliente.setAntiguedadMeses(String.valueOf(LocalDateTime.now()));
+            clienteRepository.save(cliente);
     }
-
-
 
     public String CreaUsuario(Persona persona){
         List<Usuario> usuarioList = usuarioRepository.findAll();
@@ -77,5 +89,8 @@ public class PersonaService {
     }
 
 
+    public void CreaEspecialista(Persona persona){
+
+    }
 
 }

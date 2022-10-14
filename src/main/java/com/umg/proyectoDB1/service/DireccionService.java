@@ -1,11 +1,9 @@
 package com.umg.proyectoDB1.service;
 
-
 import com.umg.proyectoDB1.entity.Direccion;
 import com.umg.proyectoDB1.repository.DireccionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,18 +15,22 @@ public class DireccionService {
     DireccionRepository direccionRepository;
 
     @GetMapping(path = "/consulta")
-    private List<Direccion> find(){
+    private List<Direccion> consulta(){
         return direccionRepository.findAll() ;
     }
 
     @PostMapping(path = "/crea")
     private String crea(@RequestBody Direccion direccion){
         if (direccion != null){
-           direccionRepository.save(direccion);
+            List<Direccion> direccionList = direccionRepository.findAll();
+            int contador = direccionList.size();
+            direccion.setIdDireccion(contador);
+            direccionRepository.save(direccion);
             return "Creado exitosamente";
         }else {
-            return "Error al crear la direccion";
+            return "Error no se puede crear";
         }
-
     }
+
+
 }

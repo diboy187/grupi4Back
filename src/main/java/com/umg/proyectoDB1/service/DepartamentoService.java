@@ -4,7 +4,6 @@ import com.umg.proyectoDB1.entity.Departamento;
 import com.umg.proyectoDB1.repository.DepartamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -16,7 +15,7 @@ public class DepartamentoService {
     DepartamentoRepository departamentoRepository;
 
     @GetMapping(path = "/consulta")
-    private List<Departamento> find(){
+    private List<Departamento> consulta(){
         return departamentoRepository.findAll() ;
     }
 
@@ -24,14 +23,11 @@ public class DepartamentoService {
     @PostMapping(path = "/crear")
     private String crea(@RequestBody Departamento departamento){
         if (departamento != null){
-
             departamentoRepository.save(departamento);
             return "Creado exitosamente";
         }else {
             return "Error al crear el departamento";
         }
-
-
     }
 
     @DeleteMapping(path = "/borrado/{id}")
@@ -42,7 +38,7 @@ public class DepartamentoService {
         }else{
             return  "No fue posible eliminar verifique el id";
         }
-
     }
+
 
 }

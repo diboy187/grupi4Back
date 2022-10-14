@@ -3,10 +3,7 @@ package com.umg.proyectoDB1.service;
 import com.umg.proyectoDB1.entity.Sede;
 import com.umg.proyectoDB1.repository.SedeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +16,12 @@ public class SedeService {
     SedeRepository sedeRepository;
 
     @GetMapping(path = "/consulta")
-    private List<Sede> find(){return sedeRepository.findAll();}
+    private List<Sede> consulta(){return sedeRepository.findAll();}
+
+    @PostMapping(path = "/crea")
+    private Sede crea(@RequestBody Sede sede){
+        return sedeRepository.save(sede);
+    }
+
 
 }

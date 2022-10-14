@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -19,5 +18,5 @@ public class TipoPagoService {
     TipoPagoRepository tipoPagoRepository;
 
     @GetMapping(path = "/consulta")
-    private List<TipoPago> find(){ return tipoPagoRepository.findAll();}
+    private List<TipoPago> consulta(){ return tipoPagoRepository.findAll();}
 }
