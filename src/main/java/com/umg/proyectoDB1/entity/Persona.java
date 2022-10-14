@@ -30,6 +30,9 @@ public class Persona {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "nit")
+    private String nit;
+
     @Column(name = "identidad")
     private String identidad;
 
@@ -48,6 +51,8 @@ public class Persona {
 
     @OneToMany(mappedBy = "especialidad")
     private List<Especialidad> especialidadList;
+
+
 
     public List<Especialidad> getEspecialidadList() {
         return especialidadList;
@@ -131,6 +136,14 @@ public class Persona {
 
     public Integer getTipoIdentidadIdTipoIdentidad() {
         return tipoIdentidadIdTipoIdentidad;
+    }
+
+
+    public String getNit() {
+        return nit;
+    }
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
     public void setTipoIdentidadIdTipoIdentidad(Integer tipoIdentidadIdTipoIdentidad) {

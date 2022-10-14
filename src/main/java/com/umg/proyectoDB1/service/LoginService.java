@@ -18,30 +18,17 @@ public class LoginService {
     UsuarioRepository usuarioRepository;
 
 
-   /* @PostMapping(path = "/autenticacion")
-    private Usuario loginTeacher(@RequestBody Login credentials) {
-        MD5 md5 = new MD5();
-        System.out.println(md5.convierte(credentials.getPass()));
-        Usuario usuario = new Usuario();
-        if(credentials.getUser().equals("1") && credentials.getPass().equals("admin")){
-            usuario.setUsuario(credentials.getUser());
-            usuario.setPassword(credentials.getPass());
-        }
-        return  usuario;
-    }*/
-
-
-
-
-//login
+    //login
     @PostMapping(path = "/autenticacion")
     private ResponseEntity<List<Usuario>> login(@RequestBody Usuario usuario){
 
         int longitud = usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(),usuario.getPassword()).size();
-        List<Usuario> findUser =  usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(),usuario.getPassword());
-        if(usuario.getUsuario().isEmpty() || usuario.getPassword().isEmpty()) {
+        if (usuario.getUsuario() == null){
             return  ResponseEntity.badRequest().build();
-        }else if(usuario.getUsuario().equals("admin") && usuario.getPassword().equals("admin")){
+        }
+        else if(usuario.getUsuario().isEmpty() || usuario.getPassword().isEmpty()) {
+            return  ResponseEntity.badRequest().build();
+        }else if(usuario.getUsuario().equals("admin") && usuario.getPassword().equals("21232f297a57a5a743894a0e4a801fc3")){
             return ResponseEntity.ok().build();
         }else if (longitud>0){
             return  ResponseEntity.ok(usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(),usuario.getPassword()));
