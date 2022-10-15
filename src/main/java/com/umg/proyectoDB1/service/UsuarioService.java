@@ -1,6 +1,8 @@
 package com.umg.proyectoDB1.service;
 
+import com.umg.proyectoDB1.entity.Historial;
 import com.umg.proyectoDB1.entity.Usuario;
+import com.umg.proyectoDB1.repository.HistorialRepository;
 import com.umg.proyectoDB1.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    @Autowired
+    HistorialRepository historialRepository;
+
     @GetMapping(path = "/consulta")
     private List<Usuario> consulta(){ return usuarioRepository.findAll();}
 
@@ -28,6 +33,11 @@ public class UsuarioService {
         usuario.setPersonaIdPersona(usuarioRecuperado.get().getPersonaIdPersona());
         return usuarioRepository.save(usuario);
     }
+
+
+
+
+
 
 
 }
