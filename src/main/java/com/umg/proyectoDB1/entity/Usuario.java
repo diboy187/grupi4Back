@@ -19,6 +19,7 @@ public class Usuario {
     @Column(name = "persona_id_persona")
     private Integer personaIdPersona;
 
+
     @OneToMany(mappedBy = "usuarioIdUsuario")
     private List<Historial> historialList;
 
@@ -63,4 +64,6 @@ public class Usuario {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+
 }

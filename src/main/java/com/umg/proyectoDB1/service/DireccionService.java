@@ -20,15 +20,15 @@ public class DireccionService {
     }
 
     @PostMapping(path = "/crea")
-    private String crea(@RequestBody Direccion direccion){
+    private Direccion crea(@RequestBody Direccion direccion){
         if (direccion != null){
             List<Direccion> direccionList = direccionRepository.findAll();
             int contador = direccionList.size();
             direccion.setIdDireccion(contador);
             direccionRepository.save(direccion);
-            return "Creado exitosamente";
+            return direccion;
         }else {
-            return "Error no se puede crear";
+            return direccion = null;
         }
     }
 
