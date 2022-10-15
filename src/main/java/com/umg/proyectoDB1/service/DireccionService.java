@@ -24,6 +24,7 @@ public class DireccionService {
         if (direccion != null){
             List<Direccion> direccionList = direccionRepository.findAll();
             int contador = direccionList.size();
+            contador++;
             direccion.setIdDireccion(contador);
             direccionRepository.save(direccion);
             return direccion;
