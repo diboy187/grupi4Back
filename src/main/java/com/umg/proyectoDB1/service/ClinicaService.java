@@ -15,7 +15,6 @@ public class ClinicaService {
     @Autowired
     ClinicaRepository clinicaRepository;
 
-
     @GetMapping(path = "/consulta")
     private List<Clinica> consulta(){return clinicaRepository.findAll();}
 
@@ -23,7 +22,5 @@ public class ClinicaService {
     private Clinica crea(@RequestBody Clinica clinica){
         return clinicaRepository.save(clinica);
     }
-
-
 
 }
