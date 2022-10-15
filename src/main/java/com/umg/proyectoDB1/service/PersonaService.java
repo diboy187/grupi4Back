@@ -39,8 +39,8 @@ public class PersonaService {
 
 
 
-    @PostMapping(path = "/crea")
-    private String  crea(@RequestBody Persona persona){
+    @PostMapping(path = "/creacliente")
+    private Persona  crea(@RequestBody Persona persona){
         if (persona.getIdPersona() == null){
             List<Persona> personaList = personaRepository.findAll();
             int contador = personaList.size() + 1;
@@ -56,7 +56,7 @@ public class PersonaService {
         usuario = CreaUsuario(persona);
 
         //return persona;
-        return usuario;
+        return persona;
     }
 
 
