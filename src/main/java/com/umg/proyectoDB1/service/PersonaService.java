@@ -40,7 +40,7 @@ public class PersonaService {
 
 
     @PostMapping(path = "/creacliente")
-    private Persona  crea(@RequestBody Persona persona){
+    private Optional<Usuario>  crea(@RequestBody Persona persona){
         if (persona.getIdPersona() == null){
             List<Persona> personaList = personaRepository.findAll();
             int contador = personaList.size() + 1;
@@ -52,11 +52,10 @@ public class PersonaService {
         //creacion cliente
         CreaCliente(persona);
         //creacion de usuario
-        String usuario = "";
+        int usuario = 0;
         usuario = CreaUsuario(persona);
-
         //return persona;
-        return persona;
+        return usuarioRepository.findById(usuario);
     }
 
 
@@ -76,7 +75,7 @@ public class PersonaService {
             clienteRepository.save(cliente);
     }
 
-    public String CreaUsuario(Persona persona){
+    public int CreaUsuario(Persona persona){
         List<Usuario> usuarioList = usuarioRepository.findAll();
         int contador = usuarioList.size() + 1;
         Usuario usuario = new Usuario();
@@ -85,7 +84,7 @@ public class PersonaService {
         usuario.setPassword(new MD5().convierte("1"));
         usuario.setPersonaIdPersona(persona.getIdPersona());
         usuarioRepository.save(usuario);
-        return usuario.getUsuario();
+        return usuario.getIdUsuario();
     }
 
 
