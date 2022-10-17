@@ -32,7 +32,7 @@ public class LoginService {
 
    public int estadoError = 1;
    public int estadoOk = 0;
-   public int estadoActivo = 1;
+
 
 
 
@@ -52,10 +52,10 @@ public class LoginService {
             //si es Admin
             Login login = new Login();
             login.setCodError(estadoOk);
+            login.setMensage("Usuario es Admin");
             login.setUsuario(usuario.getUsuario());
             login.setPassword(usuario.getPassword());
             login.setEstado("Activo");
-            login.setMensage("Usuario es Admin");
             login.setRol(0);
             return login;
 
@@ -67,46 +67,27 @@ public class LoginService {
 
             if (estadoNew == 1) {
                 Login login = new Login();
-                login.setUsuario(usuario.getUsuario());
                 login.setCodError(estadoOk);
-                login.setPassword(usuario.getPassword());
                 login.setMensage("¡bienvenido!");
-                //pendientes
-                login.setRol(1);
+                login.setUsuario(usuario.getUsuario());
+                login.setPassword(usuario.getPassword());
                 login.setEstado(EstadoValor(estadoNew));
-                login.setRol(datosUsuario.get().getIdUsuario());
+                login.setRol(RolValor(datosUsuario.get().getIdUsuario(),1));
                 return login;
             }
         }
         else {
             Login login = new Login();
-            login.setUsuario(null);
             login.setCodError(estadoError);
             login.setEstado("Error usuario no existe o estado no valido");
+            login.setUsuario(null);
             login.setPassword(usuario.getPassword());
             return login;
         }
+        //no pasara aqui
         return new Login();
     }
 
-
-
-    @GetMapping(path = "/consultaEstado")
-    private List<Estado> estadostest(){
-        return estadoRepository.findAll();
-    }
-
-
-    //busca usuario
-    public Optional<Usuario> busca(Usuario usuario){
-        return usuarioRepository.findByUsuario(usuario.getUsuario());
-    }
-
-    //devuelve el valor del Rol
-    public int RolValor (int idUsuario){
-        Optional<Historial> rol = historialRepository.findById(idUsuario);
-        return rol.get().getRolIdRol();
-    }
 
     //devuelve el valor del Estado
     public String EstadoValor ( int idEstado){
@@ -118,6 +99,13 @@ public class LoginService {
     public Optional<Historial> historial( int idUsuario){
         Optional<Historial> historial = historialRepository.findById(idUsuario);
         return historial;
+    }
+
+    //devuelve el valor del Rol
+    public int RolValor (int idUsuario,int estado){
+        int valor = buscaEstado(estado,idUsuario);
+        Optional<Historial> rol = historialRepository.findById(valor);
+        return rol.get().getRolIdRol();
     }
 
     public int validaEstado(int usuario, int estado) {
