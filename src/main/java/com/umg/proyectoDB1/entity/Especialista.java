@@ -11,8 +11,8 @@ public class Especialista {
     private Integer idEspecialista;
 
     //fk de estado especialista
-    @Column(name = "estado_especialista")
-    private Integer estadoEspecialista;
+    @Column(name = "estado_id_estado")
+    private Integer estadoIdEstado;
 
     //fk de persona
     @Column(name = "persona_id_persona")
@@ -40,12 +40,12 @@ public class Especialista {
         this.idEspecialista = idEspecialista;
     }
 
-    public Integer getEstadoEspecialista() {
-        return estadoEspecialista;
+    public Integer getEstadoIdEstado() {
+        return estadoIdEstado;
     }
 
-    public void setEstadoEspecialista(Integer estadoEspecialista) {
-        this.estadoEspecialista = estadoEspecialista;
+    public void setEstadoIdEstado(Integer estadoIdEstado) {
+        this.estadoIdEstado = estadoIdEstado;
     }
 
     public Integer getPersonaIdPersona() {

@@ -10,11 +10,11 @@ public class Estado {
     @Column(name = "id_estado", nullable = false)
     private Integer idEstado;
 
-    @Column(name = "estado")
-    private String estado;
+    @Column(name = "nombre_estado")
+    private String nombreEstado;
 
 
-    @OneToMany(mappedBy = "estadoEspecialista")
+    @OneToMany(mappedBy = "estadoIdEstado")
     private List<Especialista> estadoList;
 
     @OneToMany(mappedBy = "estadoIdEstado")
@@ -25,6 +25,22 @@ public class Estado {
 
     @OneToMany(mappedBy = "estadoIdEstado")
     private List<Factura> facturaList;
+
+    public Integer getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(Integer idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public String getNombreEstado() {
+        return nombreEstado;
+    }
+
+    public void setNombreEstado(String nombreEstado) {
+        this.nombreEstado = nombreEstado;
+    }
 
     public List<Especialista> getEstadoList() {
         return estadoList;
@@ -56,21 +72,5 @@ public class Estado {
 
     public void setFacturaList(List<Factura> facturaList) {
         this.facturaList = facturaList;
-    }
-
-    public Integer getIdEstado() {
-        return idEstado;
-    }
-
-    public void setIdEstado(Integer idEstado) {
-        this.idEstado = idEstado;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 }
