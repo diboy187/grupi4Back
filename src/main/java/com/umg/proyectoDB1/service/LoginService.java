@@ -40,23 +40,13 @@ public class LoginService {
     @PostMapping(path = "/autenticacion")
     private Login Authentication(@RequestBody Usuario usuario) {
         int longitud = usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(), usuario.getPassword()).size();
+        usuario.setPassword(new MD5().convierte(usuario.getPassword()));
 
         if (usuario.getUsuario() == null || usuario.getPassword() == null || usuario.getUsuario().isEmpty() || usuario.getPassword().isEmpty()) {
            //si los parametros son erroneos
             Login login = new Login();
             login.setCodError(estadoError);
             login.setMensaje("Parametros invalidos");
-            return login;
-
-        } else if (usuario.getUsuario().equals("admin") && usuario.getPassword().equals("21232f297a57a5a743894a0e4a801fc3")) {
-            //si es Admin
-            Login login = new Login();
-            login.setCodError(estadoOk);
-            login.setMensaje("Usuario es Admin");
-            login.setUsuario(usuario.getUsuario());
-            login.setPassword(usuario.getPassword());
-            login.setEstado("Activo");
-            login.setRol(0);
             return login;
 
         } else if (longitud > 0) {
@@ -79,7 +69,7 @@ public class LoginService {
         else {
             Login login = new Login();
             login.setCodError(estadoError);
-            login.setEstado("Error usuario no existe o estado no valido");
+            login.setEstado("Usuario no existe o estado no validó");
             login.setUsuario(null);
             login.setPassword(usuario.getPassword());
             return login;
