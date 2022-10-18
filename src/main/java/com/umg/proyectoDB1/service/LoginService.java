@@ -45,14 +45,14 @@ public class LoginService {
            //si los parametros son erroneos
             Login login = new Login();
             login.setCodError(estadoError);
-            login.setMensage("Parametros invalidos");
+            login.setMensaje("Parametros invalidos");
             return login;
 
         } else if (usuario.getUsuario().equals("admin") && usuario.getPassword().equals("21232f297a57a5a743894a0e4a801fc3")) {
             //si es Admin
             Login login = new Login();
             login.setCodError(estadoOk);
-            login.setMensage("Usuario es Admin");
+            login.setMensaje("Usuario es Admin");
             login.setUsuario(usuario.getUsuario());
             login.setPassword(usuario.getPassword());
             login.setEstado("Activo");
@@ -68,7 +68,7 @@ public class LoginService {
             if (estadoNew == 1) {
                 Login login = new Login();
                 login.setCodError(estadoOk);
-                login.setMensage("¡bienvenido!");
+                login.setMensaje("¡bienvenido!");
                 login.setUsuario(usuario.getUsuario());
                 login.setPassword(usuario.getPassword());
                 login.setEstado(EstadoValor(estadoNew));

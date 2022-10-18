@@ -1,14 +1,17 @@
 package com.umg.proyectoDB1.service;
 
 import com.umg.proyectoDB1.entity.Cliente;
+import com.umg.proyectoDB1.entity.Especialista;
 import com.umg.proyectoDB1.entity.Persona;
 import com.umg.proyectoDB1.entity.Usuario;
 import com.umg.proyectoDB1.repository.ClienteRepository;
+import com.umg.proyectoDB1.repository.EspecialistaRepository;
 import com.umg.proyectoDB1.repository.PersonaRepository;
 import com.umg.proyectoDB1.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -27,6 +30,9 @@ public class PersonaService {
     @Autowired
     ClienteRepository clienteRepository;
 
+    @Autowired
+    EspecialistaRepository especialistaRepository;
+
 
     @GetMapping(path = "/consulta")
     private List<Persona> consulta(){ return personaRepository.findAll();
@@ -38,16 +44,28 @@ public class PersonaService {
     }
 
 
+    @GetMapping(path ="/consultaCliente")
+    private ArrayList<Optional<Persona>> consultaCliente(){
+        List<Cliente> clienteList = clienteRepository.findAll();
+        ArrayList<Optional<Persona>> personas = new ArrayList<>();
+        for (Cliente cliente:clienteList
+             ) {
+            Optional<Persona> personaListTemp = personaRepository.findByIdPersona(cliente.getPersonaIdPersona());
+            personas.add(personaListTemp);
+        }
+        return personas;
+    }
 
-    @PostMapping(path = "/creacliente")
+
+    @PostMapping(path = "/creaCliente")
     private Optional<Usuario>  crea(@RequestBody Persona persona){
         if (persona.getIdPersona() == null){
             List<Persona> personaList = personaRepository.findAll();
             int contador = personaList.size() + 1;
             persona.setIdPersona(contador);
-            creaPersonaCliente(persona);
+            creaPersona(persona);
         }else{
-            creaPersonaCliente(persona);
+            creaPersona(persona);
         }
         //creacion cliente
         CreaCliente(persona);
@@ -55,17 +73,31 @@ public class PersonaService {
         int usuario = 0;
         usuario = CreaUsuario(persona);
         //return persona;
-        return usuarioRepository.findById(usuario);
+        return buscaUsuario(usuario);
+    }
+
+    @PostMapping(path = "/creaEspecialista")
+    private Optional<Usuario> creaE(@RequestBody Persona persona){
+        if(persona.getIdPersona() == null){
+            List<Persona> personaList = personaRepository.findAll();
+            int contador = personaList.size() + 1;
+            persona.setIdPersona(contador);
+            creaPersona(persona);
+        }else {
+            creaPersona(persona);
+        }
+        CreaEspecialista(persona);
+        int usuario = 0;
+        usuario = CreaUsuario(persona);
+        return buscaUsuario(usuario);
     }
 
 
-
-
-    public void creaPersonaCliente(Persona persona){
+    private void creaPersona(Persona persona){
         personaRepository.save(persona);
     }
 
-    public void CreaCliente(Persona persona){
+    private void CreaCliente(Persona persona){
             List<Cliente> clienteList = clienteRepository.findAll();
             int contador =  clienteList.size() + 1;
             Cliente cliente = new Cliente();
@@ -75,21 +107,34 @@ public class PersonaService {
             clienteRepository.save(cliente);
     }
 
-    public int CreaUsuario(Persona persona){
+    private void CreaEspecialista(Persona persona){
+            List<Especialista> especialistaList = especialistaRepository.findAll();
+            int contador = especialistaList.size() + 1;
+            Especialista especialista = new Especialista();
+            especialista.setIdEspecialista(contador);
+            especialista.setPersonaIdPersona(persona.getIdPersona());
+            especialista.setEstadoIdEstado(1);
+            especialistaRepository.save(especialista);
+    }
+
+
+    private int CreaUsuario(Persona persona){
         List<Usuario> usuarioList = usuarioRepository.findAll();
-        int contador = usuarioList.size() + 1;
+        int contador = usuarioList.size() ;
+        contador++;
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(contador);
-        usuario.setUsuario(String.valueOf(persona.getNombre().charAt(0)+persona.getApellido()+1).toUpperCase(Locale.ROOT));
+        usuario.setUsuario(String.valueOf(persona.getNombre().charAt(0)+persona.getApellido()+contador).toUpperCase(Locale.ROOT));
         usuario.setPassword(new MD5().convierte("1"));
         usuario.setPersonaIdPersona(persona.getIdPersona());
         usuarioRepository.save(usuario);
         return usuario.getIdUsuario();
     }
 
-
-    public void CreaEspecialista(Persona persona){
-
+    private Optional<Usuario> buscaUsuario(int idUsuario){
+       return usuarioRepository.findById(idUsuario);
     }
+
+
 
 }

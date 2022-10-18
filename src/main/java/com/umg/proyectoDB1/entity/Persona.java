@@ -52,7 +52,17 @@ public class Persona {
     @OneToMany(mappedBy = "especialidad")
     private List<Especialidad> especialidadList;
 
-
+    public Persona(){}
+    public Persona(Integer idPersona, String nombre, String apellido, Integer edad, Integer telefono, String email, String nit, String identidad) {
+        this.idPersona = idPersona;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.telefono = telefono;
+        this.email = email;
+        this.nit = nit;
+        this.identidad = identidad;
+    }
 
     public List<Especialidad> getEspecialidadList() {
         return especialidadList;

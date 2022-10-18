@@ -6,19 +6,11 @@ public class Login {
     int CodError;
     int Rol;
     String usuario;
-    String mensage;
+    String mensaje;
     String estado;
     String password;
 
-    public Login(){}
-    public Login(int codError, int rol, String usuario, String mensage, String estado, String password) {
-        CodError = codError;
-        Rol = rol;
-        this.usuario = usuario;
-        this.mensage = mensage;
-        this.estado = estado;
-        this.password = password;
-    }
+
 
     public String getPassword() {
         return password;
@@ -52,12 +44,12 @@ public class Login {
         this.usuario = usuario;
     }
 
-    public String getMensage() {
-        return mensage;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setMensage(String mensage) {
-        this.mensage = mensage;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
     public String getEstado() {
