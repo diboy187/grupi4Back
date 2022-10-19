@@ -39,8 +39,9 @@ public class LoginService {
     //login
     @PostMapping(path = "/autenticacion")
     private Login Authentication(@RequestBody Usuario usuario) {
-        int longitud = usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(), usuario.getPassword()).size();
         usuario.setPassword(new MD5().convierte(usuario.getPassword()));
+        int longitud = usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(), usuario.getPassword()).size();
+
 
         if (usuario.getUsuario() == null || usuario.getPassword() == null || usuario.getUsuario().isEmpty() || usuario.getPassword().isEmpty()) {
            //si los parametros son erroneos
@@ -103,7 +104,7 @@ public class LoginService {
         return  historial(valor).get().getEstadoIdEstado();
     }
 
-    public int buscaEstado(int idusuario, int estado) {
+    public int buscaEstado(int estado, int idusuario) {
         List<Historial> historial = historialRepository.findHistorialByEstadoIdEstadoAndUsuarioIdUsuarioOrderByIdHistorial(estado, idusuario);
         int cont = 0;
         for (Historial historia : historial) {
