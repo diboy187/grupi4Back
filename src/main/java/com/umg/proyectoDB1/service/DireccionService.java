@@ -34,17 +34,17 @@ public class DireccionService {
     }
 
     @GetMapping(path = "/consulta/{id}")
-    private ArrayList prueba(@PathVariable ("id") Integer id){
-        ArrayList algo = new ArrayList<>();
+    private ArrayList consultaCliente(@PathVariable ("id") Integer id){
+        ArrayList direccionCliente = new ArrayList<>();
 
         Optional<Direccion> direccion = direccionRepository.findById(id);
         Optional<Municipio> municipio = municipioRepository.findById(direccion.get().getMunicipioIdMunicipio());
         Optional<Departamento> departamento = departamentoRepository.findById(municipio.get().getDepartamentoIdDepartamento());
-        algo.add(direccion);
-        algo.add(municipio);
-        algo.add(departamento);
+        direccionCliente.add(direccion);
+        direccionCliente.add(municipio);
+        direccionCliente.add(departamento);
 
-        return algo;
+        return direccionCliente;
     }
 
     @PostMapping(path = "/crea")
