@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
     public Optional<Persona> findByIdPersona(int idPersona);
+
+    public Optional<Persona> findByTipoIdentidadIdTipoIdentidadAndIdentidad(int tipo_Identidad_id_tipo_identidad, String identidad);
 }

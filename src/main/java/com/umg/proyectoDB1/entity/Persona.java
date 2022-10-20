@@ -1,9 +1,6 @@
 package com.umg.proyectoDB1.entity;
 
-import oracle.ons.Cli;
-
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Entity
@@ -144,7 +141,7 @@ public class Persona {
         this.identidad = identidad;
     }
 
-    public Integer getTipoIdentidadIdTipoIdentidad() {
+    public int getTipoIdentidadIdTipoIdentidad() {
         return tipoIdentidadIdTipoIdentidad;
     }
 

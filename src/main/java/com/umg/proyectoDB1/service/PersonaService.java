@@ -56,6 +56,17 @@ public class PersonaService {
         return personas;
     }
 
+    @GetMapping(path = "/buscaIdentidad/{tipoIdentidad}/{identidad}")
+    private Optional<Persona> buscaIdentidad(@PathVariable ("tipoIdentidad") int tipoIdentidad, @PathVariable("identidad") String identidad){
+        return personaRepository.findByTipoIdentidadIdTipoIdentidadAndIdentidad(tipoIdentidad, identidad);
+    }
+
+    @DeleteMapping(path = "/eliminaCliente")
+    private Optional<Usuario> eliminaCliente(){
+
+        return null;
+    }
+
 
     @PostMapping(path = "/creaCliente")
     private Optional<Usuario>  crea(@RequestBody Persona persona){
