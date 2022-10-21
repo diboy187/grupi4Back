@@ -18,10 +18,7 @@ public class ClienteService {
     @GetMapping(path = "/consulta")
     private List<Cliente> consulta(){ return clienteRepository.findAll();}
 
-    @GetMapping(path = "/consulta/{id}")
-    private Optional<Cliente>  consultaId(@PathVariable ("id") Integer id){
-        return   clienteRepository.findById(id);
-    }
+
 
 
 }
