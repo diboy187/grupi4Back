@@ -66,6 +66,11 @@ public class PersonaService {
         return personas;
     }
 
+    @GetMapping(path = "/Especialista")
+    private List<Especialista> consultaE(){
+        return especialistaRepository.findAll();
+    }
+
     @GetMapping(path = "/buscaIdentidad/{tipoIdentidad}/{identidad}")
     private Optional<Persona> buscaIdentidad(@PathVariable ("tipoIdentidad") int tipoIdentidad, @PathVariable("identidad") String identidad){
         return personaRepository.findByTipoIdentidadIdTipoIdentidadAndIdentidad(tipoIdentidad, identidad);

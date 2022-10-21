@@ -19,18 +19,9 @@ public class Especialista {
     private Integer personaIdPersona;
 
 
-    @OneToMany(mappedBy = "especialistaIdEspecialista")
-    private List<EspecialidadEspecialista> especialistaIdEspecialista;
-
-
-    public List<EspecialidadEspecialista> getEspecialistaIdEspecialista() {
-        return especialistaIdEspecialista;
-    }
-
-    public void setEspecialistaIdEspecialista(List<EspecialidadEspecialista> especialistaIdEspecialista) {
-        this.especialistaIdEspecialista = especialistaIdEspecialista;
-    }
-
+  /*  @OneToMany(mappedBy = "especialistaIdEspecialista")
+    private List<EspecialidadEspecialista> especialidadEspecialistaList;
+*/
     public Integer getIdEspecialista() {
         return idEspecialista;
     }
@@ -54,4 +45,12 @@ public class Especialista {
     public void setPersonaIdPersona(Integer personaIdPersona) {
         this.personaIdPersona = personaIdPersona;
     }
+
+  /*  public List<EspecialidadEspecialista> getEspecialidadEspecialistaList() {
+        return especialidadEspecialistaList;
+    }
+
+    public void setEspecialidadEspecialistaList(List<EspecialidadEspecialista> especialidadEspecialistaList) {
+        this.especialidadEspecialistaList = especialidadEspecialistaList;
+    }*/
 }
