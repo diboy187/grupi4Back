@@ -8,9 +8,9 @@ import java.util.List;
 public class EspecialidadEspecialista {
     @Id
     @Column(name = "id_especialidad_especialista", nullable = false)
-    private Integer idespecialidadEspecialista;
+    private Integer idEspecialidadEspecialista;
 
-    @Column(name = "especialida_id_especialidad")
+    @Column(name = "especialidad_id_especialidad")
     private Integer especialidadIdEspecialidad;
 
     @Column(name = "especialista_id_especialista")
@@ -29,11 +29,11 @@ public class EspecialidadEspecialista {
     }
 
     public Integer getIdespecialidadEspecialista() {
-        return idespecialidadEspecialista;
+        return idEspecialidadEspecialista;
     }
 
     public void setIdespecialidadEspecialista(Integer idespecialidadEspecialista) {
-        this.idespecialidadEspecialista = idespecialidadEspecialista;
+        this.idEspecialidadEspecialista = idespecialidadEspecialista;
     }
 
     public Integer getEspecialidadIdEspecialidad() {

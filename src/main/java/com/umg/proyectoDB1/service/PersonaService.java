@@ -48,12 +48,27 @@ public class PersonaService {
     private ArrayList<Optional<Persona>> consultaCliente(){
         List<Cliente> clienteList = clienteRepository.findAll();
         ArrayList<Optional<Persona>> personas = new ArrayList<>();
-        for (Cliente cliente:clienteList
-             ) {
+        for (Cliente cliente:clienteList) {
             Optional<Persona> personaListTemp = personaRepository.findByIdPersona(cliente.getPersonaIdPersona());
             personas.add(personaListTemp);
         }
         return personas;
+    }
+
+    @GetMapping(path ="/consultaEspecialista")
+    private ArrayList<Optional<Persona>> consultaEspecialista(){
+        List<Especialista> especialistaList = especialistaRepository.findAll();
+        ArrayList<Optional<Persona>> personas = new ArrayList<>();
+        for (Especialista especialista: especialistaList) {
+            Optional<Persona> personaListTemp = personaRepository.findByIdPersona(especialista.getPersonaIdPersona());
+            personas.add(personaListTemp);
+        }
+        return personas;
+    }
+
+    @GetMapping(path = "/Especialista")
+    private List<Especialista> consultaE(){
+        return especialistaRepository.findAll();
     }
 
     @GetMapping(path = "/buscaIdentidad/{tipoIdentidad}/{identidad}")

@@ -46,8 +46,8 @@ public class Persona {
     @OneToMany(mappedBy = "personaIdPersona")
     private List<Usuario> usuarioList;
 
-    @OneToMany(mappedBy = "especialidad")
-    private List<Especialidad> especialidadList;
+    @OneToMany(mappedBy = "personaIdPersona")
+    private List<Especialista> especialistaList;
 
     public Persona(){}
     public Persona(Integer idPersona, String nombre, String apellido, Integer edad, Integer telefono, String email, String nit, String identidad) {
@@ -61,12 +61,12 @@ public class Persona {
         this.identidad = identidad;
     }
 
-    public List<Especialidad> getEspecialidadList() {
-        return especialidadList;
+    public List<Especialista> getEspecialistaList() {
+        return especialistaList;
     }
 
-    public void setEspecialidadList(List<Especialidad> especialidadList) {
-        this.especialidadList = especialidadList;
+    public void setEspecialistaList(List<Especialista> especialistaList) {
+        this.especialistaList = especialistaList;
     }
 
     public List<Usuario> getUsuarioList() {
