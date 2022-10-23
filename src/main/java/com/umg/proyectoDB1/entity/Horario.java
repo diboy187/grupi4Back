@@ -12,7 +12,7 @@ public class Horario {
     private Integer idHorario;
 
     @Column(name = "horario")
-    private Date horario;
+    private String horario;
 
 
     @OneToMany (mappedBy = "hoarioIdHorario")
@@ -34,11 +34,11 @@ public class Horario {
         this.idHorario = idHorario;
     }
 
-    public Date getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(Date horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
     }
 }

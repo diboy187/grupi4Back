@@ -20,6 +20,10 @@ public class MunicipioService {
     @PostMapping(path = "/crea")
     private Municipio crea(@RequestBody Municipio municipio){
         return municipioRepository.save(municipio);
+    }
 
+    @GetMapping(path = "/consulta/{id}")
+    private List<Municipio> consultaMunicipio(@PathVariable ("id") Integer id){
+        return municipioRepository.findByDepartamentoIdDepartamento(id);
     }
 }
