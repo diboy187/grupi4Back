@@ -1,13 +1,7 @@
 package com.umg.proyectoDB1.service;
 
-import com.umg.proyectoDB1.entity.Cliente;
-import com.umg.proyectoDB1.entity.Especialista;
-import com.umg.proyectoDB1.entity.Persona;
-import com.umg.proyectoDB1.entity.Usuario;
-import com.umg.proyectoDB1.repository.ClienteRepository;
-import com.umg.proyectoDB1.repository.EspecialistaRepository;
-import com.umg.proyectoDB1.repository.PersonaRepository;
-import com.umg.proyectoDB1.repository.UsuarioRepository;
+import com.umg.proyectoDB1.entity.*;
+import com.umg.proyectoDB1.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
@@ -33,6 +27,11 @@ public class PersonaService {
     @Autowired
     EspecialistaRepository especialistaRepository;
 
+    @Autowired
+    HistorialRepository historialRepository;
+
+    public int estadoError = 1;
+    public int estadoOk = 0;
 
     @GetMapping(path = "/consulta")
     private List<Persona> consulta(){ return personaRepository.findAll();
@@ -43,6 +42,10 @@ public class PersonaService {
         return personaRepository.findById(Id);
     }
 
+    @GetMapping(path = "consultaNit/{nit}")
+    private Optional<Persona> busquedaPorNit(@PathVariable("nit")String nit){
+        return personaRepository.findByNit(nit);
+    }
 
     @GetMapping(path ="/consultaCliente")
     private ArrayList<Optional<Persona>> consultaCliente(){
@@ -76,15 +79,9 @@ public class PersonaService {
         return personaRepository.findByTipoIdentidadIdTipoIdentidadAndIdentidad(tipoIdentidad, identidad);
     }
 
-    @DeleteMapping(path = "/eliminaCliente")
-    private Optional<Usuario> eliminaCliente(){
-
-        return null;
-    }
-
 
     @PostMapping(path = "/creaCliente")
-    private Optional<Usuario>  crea(@RequestBody Persona persona){
+    private Login  crea(@RequestBody Persona persona){
         if (persona.getIdPersona() == null){
             List<Persona> personaList = personaRepository.findAll();
             int contador = personaList.size() + 1;
@@ -99,7 +96,28 @@ public class PersonaService {
         int usuario = 0;
         usuario = CreaUsuario(persona);
         //return persona;
-        return buscaUsuario(usuario);
+        buscaUsuario(usuario);
+        Login usuarioCreado = new Login();
+        usuarioCreado.setUsuario(buscaUsuario(usuario).get().getUsuario());
+        creaHistorial(usuarioCreado);
+        usuarioCreado.setMensaje("Creado exitosamente");
+        usuarioCreado.setRol(1);
+        usuarioCreado.setCodError(estadoOk);
+        usuarioCreado.setEstado("Activo");
+        return usuarioCreado;
+    }
+
+    private void creaHistorial(Login usuario){
+        Historial historial = new Historial();
+        List<Historial> historialList = historialRepository.findAll();
+        int contador = historialList.size() + 1;
+        historial.setIdHistorial(contador);
+        historial.setEstadoIdEstado(1);
+        historial.setFechaCambio(LocalDateTime.now());
+        historial.setRolIdRol(2);
+        historial.setUsuarioIdUsuario( buscaUsuarioId(usuario.getUsuario()));
+        historialRepository.save(historial);
+
     }
 
     @PostMapping(path = "/creaEspecialista")
@@ -117,10 +135,27 @@ public class PersonaService {
         usuario = CreaUsuario(persona);
         return buscaUsuario(usuario);
     }
-
-
     private void creaPersona(Persona persona){
         personaRepository.save(persona);
+    }
+
+
+
+    private boolean ValidaNitDpi(Persona persona){
+        List<Persona> personaList = personaRepository.findAll();
+        String  nit = persona.getNit();
+        int tipoIdentidad = persona.getTipoIdentidadIdTipoIdentidad();
+        String  identidad = persona.getIdentidad();
+        for (Persona personas:personaList
+             ) {
+          if(personas.getNit().equals(nit) || personas.getTipoIdentidadIdTipoIdentidad()==tipoIdentidad && personas.getIdentidad().equals(identidad) ){
+               return false;
+          }
+         else{
+              return true;
+          }
+        }
+        return true;
     }
 
     private void CreaCliente(Persona persona){
@@ -161,6 +196,15 @@ public class PersonaService {
        return usuarioRepository.findById(idUsuario);
     }
 
+    private int buscaUsuarioId(String usuario){
+        return usuarioRepository.findByUsuario(usuario).get().getIdUsuario();
+    }
 
+
+
+    @PostMapping(path = "/test")
+    private boolean valida(@RequestBody Persona persona){
+        return ValidaNitDpi(persona);
+    }
 
 }

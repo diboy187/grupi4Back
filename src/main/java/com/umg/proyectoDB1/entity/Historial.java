@@ -1,7 +1,7 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "historial")
@@ -11,7 +11,7 @@ public class Historial {
     private Integer idHistorial;
 
     @Column(name = "fecha_cambio")
-    private Date fechaCambio;
+    private LocalDateTime fechaCambio;
 
     @Column(name = "usuario_id_usuario")
     private Integer usuarioIdUsuario;
@@ -32,11 +32,11 @@ public class Historial {
         this.idHistorial = idHistorial;
     }
 
-    public Date getFechaCambio() {
+    public LocalDateTime getFechaCambio() {
         return fechaCambio;
     }
 
-    public void setFechaCambio(Date fechaCambio) {
+    public void setFechaCambio(LocalDateTime fechaCambio) {
         this.fechaCambio = fechaCambio;
     }
 
