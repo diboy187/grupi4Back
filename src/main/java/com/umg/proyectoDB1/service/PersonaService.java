@@ -79,7 +79,6 @@ public class PersonaService {
         return personaRepository.findByTipoIdentidadIdTipoIdentidadAndIdentidad(tipoIdentidad, identidad);
     }
 
-
     @PostMapping(path = "/creaCliente")
     private Login  crea(@RequestBody Persona persona){
         if (persona.getIdPersona() == null){
@@ -157,8 +156,6 @@ public class PersonaService {
         personaRepository.save(persona);
     }
 
-
-
     private boolean ValidaNitDpi(Persona persona){
         List<Persona> personaList = personaRepository.findAll();
         String  nit = persona.getNit();
@@ -195,7 +192,6 @@ public class PersonaService {
             especialista.setEstadoIdEstado(1);
             especialistaRepository.save(especialista);
     }
-
 
     private int CreaUsuario(Persona persona){
         List<Usuario> usuarioList = usuarioRepository.findAll();
