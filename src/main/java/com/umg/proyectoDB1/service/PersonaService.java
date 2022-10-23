@@ -86,9 +86,27 @@ public class PersonaService {
             List<Persona> personaList = personaRepository.findAll();
             int contador = personaList.size() + 1;
             persona.setIdPersona(contador);
-            creaPersona(persona);
+            Boolean pasa = ValidaNitDpi(persona);
+            if( pasa){
+                creaPersona(persona);
+            }else{
+                pasa= false;
+                Login login = new Login();
+                login.setCodError(estadoError);
+                login.setMensaje("Cliente con dpi o nit ya existe");
+                return login;
+            }
         }else{
-            creaPersona(persona);
+            Boolean pasa = ValidaNitDpi(persona);
+            if( pasa){
+                creaPersona(persona);
+            }else{
+                pasa= false;
+                Login login = new Login();
+                login.setCodError(estadoError);
+                login.setMensaje("Cliente con dpi o nit ya existe");
+                return login;
+            }
         }
         //creacion cliente
         CreaCliente(persona);
@@ -202,9 +220,5 @@ public class PersonaService {
 
 
 
-    @PostMapping(path = "/test")
-    private boolean valida(@RequestBody Persona persona){
-        return ValidaNitDpi(persona);
-    }
 
 }
