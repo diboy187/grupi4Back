@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("Factura")
+@RequestMapping("factura")
 @CrossOrigin
 public class FacturaService {
 

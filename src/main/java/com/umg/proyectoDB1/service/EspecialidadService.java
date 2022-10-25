@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("Especialidad")
+@RequestMapping("especialidad")
 @CrossOrigin
 public class EspecialidadService {
 

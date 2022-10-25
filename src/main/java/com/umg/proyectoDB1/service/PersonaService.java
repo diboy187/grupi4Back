@@ -68,7 +68,7 @@ public class PersonaService {
         return personas;
     }
 
-    @GetMapping(path = "/Especialista")
+    @GetMapping(path = "/especialista")
     private List<Especialista> consultaE(){
         return especialistaRepository.findAll();
     }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("Menu")
+@RequestMapping("menu")
 @CrossOrigin
 public class MenuService {
 

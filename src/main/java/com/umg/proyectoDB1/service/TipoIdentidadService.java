@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("TipoIdentidad")
+@RequestMapping("tipoIdentidad")
 @CrossOrigin
 public class TipoIdentidadService {
 
