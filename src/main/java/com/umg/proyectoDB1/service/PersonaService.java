@@ -4,11 +4,10 @@ import com.umg.proyectoDB1.entity.*;
 import com.umg.proyectoDB1.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("persona")
@@ -179,7 +178,7 @@ public class PersonaService {
             Cliente cliente = new Cliente();
             cliente.setIdCliente(contador);
             cliente.setPersonaIdPersona(persona.getIdPersona());
-            cliente.setAntiguedadMeses(String.valueOf(LocalDateTime.now()));
+            cliente.setFechaCreacion(LocalDateTime.now());
             clienteRepository.save(cliente);
     }
 

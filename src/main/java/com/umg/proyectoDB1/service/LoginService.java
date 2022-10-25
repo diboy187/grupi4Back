@@ -18,95 +18,96 @@ import java.util.Optional;
 
 public class LoginService {
 
+    public int estadoError = 1;
+    public int estadoOk = 0;
     @Autowired
     UsuarioRepository usuarioRepository;
-
     @Autowired
     EstadoRepository estadoRepository;
-
     @Autowired
     HistorialRepository historialRepository;
-
     @Autowired
     RolRepository rolRepository;
-
-   public int estadoError = 1;
-   public int estadoOk = 0;
-
-
-
 
     //login
     @PostMapping(path = "/autenticacion")
     private Login Authentication(@RequestBody Usuario usuario) {
-        usuario.setPassword(new MD5().convierte(usuario.getPassword()));
-        int longitud = usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(), usuario.getPassword()).size();
-
-
         if (usuario.getUsuario() == null || usuario.getPassword() == null || usuario.getUsuario().isEmpty() || usuario.getPassword().isEmpty()) {
-           //si los parametros son erroneos
+            //si los parametros son erroneos
             Login login = new Login();
             login.setCodError(estadoError);
             login.setMensaje("Parametros invalidos");
             return login;
-
-        } else if (longitud > 0) {
-            Optional<Usuario> datosUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
-
-            int estadoUsuario = datosUsuario.get().getIdUsuario();
-            int estadoNew = validaEstado(estadoUsuario, 1);
-
-            if (estadoNew == 1) {
+        } else {
+            usuario.setPassword(new MD5().convierte(usuario.getPassword()));
+            int longitud = usuarioRepository.findByUsuarioAndPassword(usuario.getUsuario(), usuario.getPassword()).size();
+            if (longitud > 0) {
+                Optional<Usuario> datosUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
+                int estadoUsuario = datosUsuario.get().getIdUsuario();
+                int estadoNew = validaEstado(estadoUsuario, 1);
+                if (estadoNew == 1) {
+                    Login login = new Login();
+                    login.setCodError(estadoOk);
+                    login.setMensaje("¡bienvenido!");
+                    login.setUsuario(usuario.getUsuario());
+                    login.setPassword(usuario.getPassword());
+                    login.setEstado(EstadoValor(estadoNew));
+                    login.setRol(RolValor(datosUsuario.get().getIdUsuario(), 1));
+                    return login;
+                } else {
+                    Login login = new Login();
+                    login.setCodError(estadoError);
+                    login.setMensaje("¡Estado no valido!");
+                    return login;
+                }
+            } else {
                 Login login = new Login();
-                login.setCodError(estadoOk);
-                login.setMensaje("¡bienvenido!");
-                login.setUsuario(usuario.getUsuario());
+                login.setCodError(estadoError);
+                login.setEstado("¡Usuario no existe!");
                 login.setPassword(usuario.getPassword());
-                login.setEstado(EstadoValor(estadoNew));
-                login.setRol(RolValor(datosUsuario.get().getIdUsuario(),1));
                 return login;
             }
         }
-        else {
-            Login login = new Login();
-            login.setCodError(estadoError);
-            login.setEstado("Usuario no existe o estado no validó");
-            login.setUsuario(null);
-            login.setPassword(usuario.getPassword());
-            return login;
-        }
-        //no pasara aqui
-        return new Login();
     }
 
 
     //devuelve el valor del Estado
-    public String EstadoValor ( int idEstado){
+    public String EstadoValor(int idEstado) {
         Optional<Estado> estados = estadoRepository.findById(idEstado);
         return estados.get().getNombreEstado();
     }
 
     //encuentra el historial
-    public Optional<Historial> historial( int idUsuario){
+    public Optional<Historial> historial(int idUsuario) {
         Optional<Historial> historial = historialRepository.findById(idUsuario);
         return historial;
     }
 
     //devuelve el valor del Rol
-    public int RolValor (int idUsuario,int estado){
-        int valor = buscaEstado(estado,idUsuario);
+    public int RolValor(int idUsuario, int estado) {
+        int valor = buscaEstado(estado, idUsuario);
         Optional<Historial> rol = historialRepository.findById(valor);
         return rol.get().getRolIdRol();
     }
 
     public int validaEstado(int usuario, int estado) {
         int valor = buscaEstado(estado, usuario);
-        return  historial(valor).get().getEstadoIdEstado();
+        if (valor == 0) {
+            return 0;
+        } else {
+            return historial(valor).get().getEstadoIdEstado();
+        }
+
     }
 
     public int buscaEstado(int estado, int idusuario) {
         List<Historial> historial = historialRepository.findHistorialByEstadoIdEstadoAndUsuarioIdUsuarioOrderByIdHistorial(estado, idusuario);
+        int longitud = historial.size();
         int cont = 0;
+
+        if (longitud == 0) {
+            return cont;
+        }
         for (Historial historia : historial) {
             if (historia.getIdHistorial() > cont) {
                 cont = historia.getIdHistorial();
@@ -114,8 +115,11 @@ public class LoginService {
                 cont = historia.getIdHistorial();
                 return cont;
             }
+
+            return cont;
         }
         return cont;
     }
+
 
 }

@@ -1,6 +1,8 @@
 package com.umg.proyectoDB1.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,8 +14,8 @@ public class Cliente {
     @Column(name = "id_cliente", nullable = false)
     private Integer idCliente;
 
-    @Column(name = "antiguedad_meses")
-    private String antiguedadMeses;
+    @Column(name = "fecha_creacion")
+    private LocalDateTime fechaCreacion;
 
     //fk para persona
     @Column(name = "persona_id_persona")
@@ -39,12 +41,12 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public String getAntiguedadMeses() {
-        return antiguedadMeses;
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setAntiguedadMeses(String antiguedadMeses) {
-        this.antiguedadMeses = antiguedadMeses;
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Integer getPersonaIdPersona() {
