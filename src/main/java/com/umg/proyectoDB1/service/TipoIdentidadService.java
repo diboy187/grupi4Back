@@ -1,12 +1,11 @@
 package com.umg.proyectoDB1.service;
 
+import com.umg.proyectoDB1.entity.Estado;
 import com.umg.proyectoDB1.entity.TipoIdentidad;
+import com.umg.proyectoDB1.entity.TipoPago;
 import com.umg.proyectoDB1.repository.TipoIdentidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +23,12 @@ public class TipoIdentidadService {
         return tipoIdentidadRepository.findAll();
     }
 
+    @PostMapping(path = "/crea")
+    private TipoIdentidad crea(@RequestBody TipoIdentidad tipoIdentidad){
+        int cont = tipoIdentidadRepository.findAll().size();
+        cont++;
+        tipoIdentidad.setIdTipoIdentidad(cont);
+        return tipoIdentidadRepository.save(tipoIdentidad);
+    }
 
 }

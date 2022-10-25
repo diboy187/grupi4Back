@@ -3,12 +3,10 @@ package com.umg.proyectoDB1.service;
 
 import com.umg.proyectoDB1.entity.Terapia;
 import com.umg.proyectoDB1.entity.TerapiaReservacion;
+import com.umg.proyectoDB1.entity.TipoIdentidad;
 import com.umg.proyectoDB1.repository.TerapiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,11 @@ public class TerapiaService {
         return terapiaRepository.findAll();
     }
 
-
+    @PostMapping(path = "/crea")
+    private Terapia crea(@RequestBody Terapia terapia){
+        int cont = terapiaRepository.findAll().size();
+        cont++;
+        terapia.setIdTerapia(cont);
+        return terapiaRepository.save(terapia);
+    }
 }
