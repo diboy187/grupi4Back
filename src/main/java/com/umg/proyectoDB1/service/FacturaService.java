@@ -50,6 +50,9 @@ public class FacturaService {
     @Autowired
     PersonaRepository personaRepository;
 
+    @Autowired
+    SedeRepository sedeRepository;
+
     @GetMapping(path = "/consulta")
     private List<Factura> consulta(){
         return facturaRepository.findAll();
@@ -68,6 +71,7 @@ public class FacturaService {
         Optional<Persona> personaEspecialista = personaRepository.findById(especialista.get().getPersonaIdPersona());
         Optional<ClinicaEspecialidad> clinicaEspecialidad = clinicaEspecialidadRepository.findById(reservacion.get().getClinicaEspecialidadIdClinicaEspecialidad());
         Optional<Clinica> clinica = clinicaRepository.findById(clinicaEspecialidad.get().getClinicaIdClinica());
+        Optional<Sede> sede = sedeRepository.findById(clinica.get().getSedeIdSede());
         Optional<Cliente> cliente = clienteRepository.findById(reservacion.get().getClienteIdCliente());
         Optional<Persona> personaCliente = personaRepository.findById(cliente.get().getPersonaIdPersona());
 
@@ -75,10 +79,10 @@ public class FacturaService {
         detalle.add(reservacion);
         detalle.add(horario);
         detalle.add(estado);
+        detalle.add(sede);
         detalle.add(clinica);
         detalle.add(personaEspecialista);
         detalle.add(personaCliente);
-
 
         return detalle;
     }
