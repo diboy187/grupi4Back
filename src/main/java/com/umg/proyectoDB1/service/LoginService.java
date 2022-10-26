@@ -32,6 +32,7 @@ public class LoginService {
     //login
     @PostMapping(path = "/autenticacion")
     private Login Authentication(@RequestBody Usuario usuario) {
+        System.out.println("Datos del login recibiendo .... " + "user -> "+usuario.getUsuario() );
         if (usuario.getUsuario() == null || usuario.getPassword() == null || usuario.getUsuario().isEmpty() || usuario.getPassword().isEmpty()) {
             //si los parametros son erroneos
             Login login = new Login();
