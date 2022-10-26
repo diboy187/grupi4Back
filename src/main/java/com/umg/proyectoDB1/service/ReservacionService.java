@@ -84,25 +84,17 @@ public class ReservacionService {
                     System.out.println(" si se puede");
                     return factible = true;
                 } else {
-                    if (fechaMesP < fechaMes) {
-                        System.out.println(" si se puede");
-                        return factible = true;
-                    }
                     System.out.println(" No se puede");
                     return factible = false;
                 }
             } else {
-                if (fechaAnioP <= fechaAnio) {
-                    if (fechaMesP < fechaMes) {
-                        System.out.println(" si se puede");
-                        return factible = true;
-                    } else {
-                        System.out.println(" No se puede");
-                        return factible = false;
-                    }
+                if (fechaMesP < fechaMes) {
+                    System.out.println(" si se puede");
+                    return factible = true;
+                } else {
+                    System.out.println(" No se puede");
+                    return factible = false;
                 }
-                System.out.println("No anio mayor al registrado");
-                return factible = false;
             }
         } else if (fechaAnioP < fechaAnio) {
             System.out.println(" si se puede");
