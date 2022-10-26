@@ -20,6 +20,9 @@ public class SedeService {
 
     @PostMapping(path = "/crea")
     private Sede crea(@RequestBody Sede sede){
+        int cont = sedeRepository.findAll().size();
+        cont++;
+        sede.setIdSede(cont);
         return sedeRepository.save(sede);
     }
 
