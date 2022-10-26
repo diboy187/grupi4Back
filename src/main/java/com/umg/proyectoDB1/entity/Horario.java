@@ -15,16 +15,8 @@ public class Horario {
     private String horario;
 
 
-    @OneToMany (mappedBy = "hoarioIdHorario")
+    @OneToMany (mappedBy = "horarioIdHorario")
     private List<Reservacion> reservacionList;
-
-    public List<Reservacion> getReservacionList() {
-        return reservacionList;
-    }
-
-    public void setReservacionList(List<Reservacion> reservacionList) {
-        this.reservacionList = reservacionList;
-    }
 
     public Integer getIdHorario() {
         return idHorario;
@@ -40,5 +32,13 @@ public class Horario {
 
     public void setHorario(String horario) {
         this.horario = horario;
+    }
+
+    public List<Reservacion> getReservacionList() {
+        return reservacionList;
+    }
+
+    public void setReservacionList(List<Reservacion> reservacionList) {
+        this.reservacionList = reservacionList;
     }
 }

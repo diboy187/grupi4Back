@@ -23,9 +23,9 @@ public class RolService {
 
     @PostMapping(path = "/crea")
     private Rol crea(@RequestBody Rol tipoIdentidad){
-        int cont = rolRepository.findAll().size();
-        cont++;
-        tipoIdentidad.setIdRol(cont);
+        int id = rolRepository.findAll().size();
+        id++;
+        tipoIdentidad.setIdRol(id);
         return rolRepository.save(tipoIdentidad);
     }
 }

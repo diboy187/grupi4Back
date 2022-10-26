@@ -25,9 +25,9 @@ public class TipoIdentidadService {
 
     @PostMapping(path = "/crea")
     private TipoIdentidad crea(@RequestBody TipoIdentidad tipoIdentidad){
-        int cont = tipoIdentidadRepository.findAll().size();
-        cont++;
-        tipoIdentidad.setIdTipoIdentidad(cont);
+        int id = tipoIdentidadRepository.findAll().size();
+        id++;
+        tipoIdentidad.setIdTipoIdentidad(id);
         return tipoIdentidadRepository.save(tipoIdentidad);
     }
 

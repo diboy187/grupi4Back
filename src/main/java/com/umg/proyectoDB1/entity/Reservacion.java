@@ -18,7 +18,7 @@ public class Reservacion {
     private Date fechaRerservacion;
 
     @Column(name = "horario_id_horario")
-    private Integer hoarioIdHorario;
+    private Integer horarioIdHorario;
 
     @Column(name = "cliente_id_cliente")
     private Integer clienteIdCliente;
@@ -67,12 +67,12 @@ public class Reservacion {
         this.fechaRerservacion = fechaRerservacion;
     }
 
-    public Integer getHoarioIdHorario() {
-        return hoarioIdHorario;
+    public Integer getHorarioIdHorario() {
+        return horarioIdHorario;
     }
 
-    public void setHoarioIdHorario(Integer hoarioIdHorario) {
-        this.hoarioIdHorario = hoarioIdHorario;
+    public void setHorarioIdHorario(Integer horarioIdHorario) {
+        this.horarioIdHorario = horarioIdHorario;
     }
 
     public Integer getClienteIdCliente() {

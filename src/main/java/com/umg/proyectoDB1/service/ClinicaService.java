@@ -20,6 +20,9 @@ public class ClinicaService {
 
     @PostMapping(path = "/crea")
     private Clinica crea(@RequestBody Clinica clinica){
+        int id = clinicaRepository.findAll().size();
+        id++;
+        clinica.setIdclinica(id);
         return clinicaRepository.save(clinica);
     }
 

@@ -64,7 +64,7 @@ public class FacturaService {
         Optional<DetalleFactura> detalleFactura = detalleFacturaRepository.findById(id);
         Optional<TerapiaReservacion> terapiaReservacion = terapiaReservacionRepository.findById(detalleFactura.get().getTerpaiaReservacionIdTerapiaReservacion());
         Optional<Reservacion> reservacion = reservacionRepository.findById(terapiaReservacion.get().getReservacionIdReservacion());
-        Optional<Horario> horario = horarioRepository.findById(reservacion.get().getHoarioIdHorario());
+        Optional<Horario> horario = horarioRepository.findById(reservacion.get().getHorarioIdHorario());
         Optional<Estado> estado = estadoRepository.findById(reservacion.get().getEstadoIdEstado());
         Optional<EspecialidadEspecialista> especialidadEspecialista = especialidadEspecialistaRepository.findById(reservacion.get().getEspecialidadEspecialistaIdEspecialidadEspecialista());
         Optional<Especialista> especialista = especialistaRepository.findById(especialidadEspecialista.get().getEspecialistaIdEspecialista());
