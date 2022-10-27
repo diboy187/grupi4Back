@@ -25,7 +25,6 @@ public class ClinicaService {
     @GetMapping(path = "/consulta")
     private List<Clinica> consulta(){return clinicaRepository.findAll();}
 
-<<<<<<< HEAD
     @PostMapping(path = "/consulta/{id}")
     private List<Clinica> consultaClinica(@PathVariable("id") Integer id, @RequestBody List<Terapia> terapiaList){
         List<Clinica> clinicaList = clinicaRepository.findAll();
@@ -39,14 +38,6 @@ public class ClinicaService {
         }
 
         return clinicaList1;
-=======
-    @PostMapping(path = "/crea")
-    private Clinica crea(@RequestBody Clinica clinica){
-        int id = clinicaRepository.findAll().size();
-        id++;
-        clinica.setIdclinica(id);
-        return clinicaRepository.save(clinica);
->>>>>>> 970434210c01aaf8647dcdbe3ab333e9356d253c
     }
 
     @PostMapping(path = "/crea")
