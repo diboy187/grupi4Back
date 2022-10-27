@@ -24,6 +24,7 @@ public class MenuService {
     MenuRolRepository menuRolRepository;
 
 
+
     @GetMapping(path = "/consulta")
     private List<Menu> consulta(){
         return menuRepository.findAll();
