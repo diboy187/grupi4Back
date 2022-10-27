@@ -5,6 +5,7 @@ import com.umg.proyectoDB1.repository.DepartamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("departamento")
@@ -21,24 +22,14 @@ public class DepartamentoService {
 
 
     @PostMapping(path = "/crear")
-    private String crea(@RequestBody Departamento departamento){
-        if (departamento != null){
-            departamentoRepository.save(departamento);
-            return "Creado exitosamente";
-        }else {
-            return "Error al crear el departamento";
-        }
+    private Departamento crea(@RequestBody Departamento departamento){
+            int id = departamentoRepository.findAll().size();
+            id++;
+            departamento.setIdDepartamento(id);
+            return  departamentoRepository.save(departamento);
+
     }
 
-    @DeleteMapping(path = "/borrado/{id}")
-    private String borra(@PathVariable ("id") int id){
-        if ( id > -1){
-            departamentoRepository.deleteById(id);
-            return  "Eliminado exitosamente" ;
-        }else{
-            return  "No fue posible eliminar verifique el id";
-        }
-    }
 
 
 }

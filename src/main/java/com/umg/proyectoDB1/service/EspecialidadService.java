@@ -21,9 +21,9 @@ public class EspecialidadService {
 
     @PostMapping(path = "/crea")
     private Especialidad crea(@RequestBody Especialidad especialidad){
-        int cont = especialidadRepository.findAll().size();
-        cont++;
-        especialidad.setIdEspecialidad(cont);
+        int id = especialidadRepository.findAll().size();
+        id++;
+        especialidad.setIdEspecialidad(id);
         return especialidadRepository.save(especialidad);
     }
 }

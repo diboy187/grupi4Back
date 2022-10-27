@@ -27,6 +27,10 @@ public class HorarioService {
 
     @PostMapping(path = "/crea")
     private Horario crea(@RequestBody Horario horario){
+
+        int id = horarioRepository.findAll().size();
+        id ++;
+        horario.setIdHorario(id);
         return horarioRepository.save(horario);
     }
 

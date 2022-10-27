@@ -23,9 +23,9 @@ public class EstadoService {
 
     @PostMapping(path = "/crea")
     private Estado crea(@RequestBody Estado estado){
-        int cont = estadoRepository.findAll().size();
-        cont++;
-        estado.setIdEstado(cont);
+        int id = estadoRepository.findAll().size();
+        id++;
+        estado.setIdEstado(id);
         return estadoRepository.save(estado);
     }
 }

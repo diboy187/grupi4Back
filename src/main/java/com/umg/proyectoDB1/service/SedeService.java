@@ -43,9 +43,9 @@ public class SedeService {
 
     @PostMapping(path = "/crea")
     private Sede crea(@RequestBody Sede sede){
-        int cont = sedeRepository.findAll().size();
-        cont++;
-        sede.setIdSede(cont);
+        int id = sedeRepository.findAll().size();
+        id++;
+        sede.setIdSede(id);
         return sedeRepository.save(sede);
     }
 

@@ -25,9 +25,9 @@ public class TerapiaService {
 
     @PostMapping(path = "/crea")
     private Terapia crea(@RequestBody Terapia terapia){
-        int cont = terapiaRepository.findAll().size();
-        cont++;
-        terapia.setIdTerapia(cont);
+        int id = terapiaRepository.findAll().size();
+        id++;
+        terapia.setIdTerapia(id);
         return terapiaRepository.save(terapia);
     }
 }
