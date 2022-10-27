@@ -1,10 +1,7 @@
 package com.umg.proyectoDB1.service;
 
 import com.umg.proyectoDB1.entity.*;
-import com.umg.proyectoDB1.repository.EstadoRepository;
-import com.umg.proyectoDB1.repository.HistorialRepository;
-import com.umg.proyectoDB1.repository.RolRepository;
-import com.umg.proyectoDB1.repository.UsuarioRepository;
+import com.umg.proyectoDB1.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +23,12 @@ public class LoginService {
     EstadoRepository estadoRepository;
     @Autowired
     HistorialRepository historialRepository;
+
     @Autowired
     RolRepository rolRepository;
+
+    @Autowired
+    PersonaRepository personaRepository;
 
     //login
     @PostMapping(path = "/autenticacion")
@@ -48,6 +49,7 @@ public class LoginService {
                 int estadoNew = validaEstado(estadoUsuario, 1);
                 if (estadoNew == 1) {
                     Login login = new Login();
+                    login.setIdCliente(buscaCliente(datosUsuario.get().getPersonaIdPersona()));
                     login.setCodError(estadoOk);
                     login.setMensaje("¡bienvenido!");
                     login.setUsuario(usuario.getUsuario());
@@ -71,6 +73,17 @@ public class LoginService {
         }
     }
 
+
+    //    busca cliente
+    public int buscaCliente(int id){
+        Optional<Persona> persona = personaRepository.findById(id);
+
+        if(!persona.get().getClienteList().isEmpty()){
+            return persona.get().getClienteList().get(0).getIdCliente();
+        }else{
+            return -1;
+        }
+    }
 
     //devuelve el valor del Estado
     public String EstadoValor(int idEstado) {
