@@ -31,4 +31,10 @@ public class TipoIdentidadService {
         return tipoIdentidadRepository.save(tipoIdentidad);
     }
 
+
+    @PostMapping(path = "/actualiza")
+    private TipoIdentidad actualiza(@RequestBody TipoIdentidad tipoIdentidad){
+        return tipoIdentidadRepository.save(tipoIdentidad);
+    }
+
 }
