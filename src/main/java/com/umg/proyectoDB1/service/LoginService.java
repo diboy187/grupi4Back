@@ -66,7 +66,7 @@ public class LoginService {
             } else {
                 Login login = new Login();
                 login.setCodError(estadoError);
-                login.setEstado("¡Usuario no existe!");
+                login.setEstado("¡Usuario  o Contraseña Erronea!");
                 login.setPassword(usuario.getPassword());
                 return login;
             }
