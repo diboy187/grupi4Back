@@ -11,6 +11,9 @@ public class TerapiaReservacion {
     @Column(name = "id_terapia_reservacion" )
     private Integer idTerapiaReservacion;
 
+    @Column(name = "terapia_id_terapia")
+    private Integer terapiaIdTerapia;
+
     @Column(name = "reservacion_id_reservacion")
     private Integer reservacionIdReservacion;
 
@@ -19,6 +22,13 @@ public class TerapiaReservacion {
     private List<DetalleFactura> detalleFacturaList;
 
 
+    public Integer getTerapiaIdTerapia() {
+        return terapiaIdTerapia;
+    }
+
+    public void setTerapiaIdTerapia(Integer terapiaIdTerapia) {
+        this.terapiaIdTerapia = terapiaIdTerapia;
+    }
 
     public Integer getIdTerapiaReservacion() {
         return idTerapiaReservacion;

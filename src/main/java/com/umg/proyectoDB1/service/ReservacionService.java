@@ -62,7 +62,7 @@ public class ReservacionService {
         Optional<Reservacion> reservaciontmp = reservacionRepository.findById(id);
 
         String fechaActual = DateTimeFormatter.ofPattern("yyyy-MM-dd ").format(LocalDateTime.now());
-        Date fechatemp = reservacion.get().getFechaRerservacion();
+        Date fechatemp = reservacion.get().getFechaReservacion();
 
         System.out.println("fecha Actual -> " + fechaActual);
         System.out.println("fecha peticion -> " + fechatemp);
