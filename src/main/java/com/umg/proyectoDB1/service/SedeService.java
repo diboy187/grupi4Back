@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("sede")
@@ -49,5 +50,14 @@ public class SedeService {
         return sedeRepository.save(sede);
     }
 
+    @PostMapping(path = "/actualiza")
+    private Sede actualizar(@RequestBody Sede sede){
+
+        Optional<Sede> sedeDato =   sedeRepository.findById(sede.getIdSede());
+        sede.setIdSede(sede.getIdSede());
+        sede.setSede(sede.getSede());
+        sede.setDireccionIdDireccion(sedeDato.get().getDireccionIdDireccion());
+        return sedeRepository.save(sede);
+    }
 
 }

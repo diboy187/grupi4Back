@@ -75,6 +75,8 @@ public class PersonaService {
 
     @GetMapping(path = "/buscaIdentidad/{tipoIdentidad}/{identidad}")
     private Optional<Persona> buscaIdentidad(@PathVariable ("tipoIdentidad") int tipoIdentidad, @PathVariable("identidad") String identidad){
+        System.out.println(tipoIdentidad);
+        System.out.println(identidad);
         return personaRepository.findByTipoIdentidadIdTipoIdentidadAndIdentidad(tipoIdentidad, identidad);
     }
 
@@ -149,8 +151,16 @@ public class PersonaService {
         CreaEspecialista(persona);
         int usuario = 0;
         usuario = CreaUsuario(persona);
+        buscaUsuario(usuario);
+        Login usuarioCreado = new Login();
+        usuarioCreado.setUsuario(buscaUsuario(usuario).get().getUsuario());
+        creaHistorial(usuarioCreado);
         return buscaUsuario(usuario);
     }
+
+
+
+
     private void creaPersona(Persona persona){
         personaRepository.save(persona);
     }
