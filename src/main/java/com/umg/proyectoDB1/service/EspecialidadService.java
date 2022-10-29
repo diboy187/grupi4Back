@@ -6,7 +6,9 @@ import com.umg.proyectoDB1.repository.EspecialidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("especialidad")
@@ -26,5 +28,16 @@ public class EspecialidadService {
         especialidad.setIdEspecialidad(id);
         return especialidadRepository.save(especialidad);
     }
+    @PostMapping(path = "/actualizar")
+    private Especialidad actualiza(@RequestBody Especialidad especialidad){
+
+//        Optional<Especialidad> es = especialidadRepository.findByEspecialidad(especialidad.getEspecialidad());
+//        especialidad.setIdEspecialidad(es.get().getIdEspecialidad());
+        System.out.println(especialidad.getEspecialidad());
+        System.out.println(especialidad.getIdEspecialidad());
+       return especialidadRepository.save(especialidad);
+//return especialidad;
+    }
+
 }
 
